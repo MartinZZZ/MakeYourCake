@@ -1,7 +1,7 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Button, Tab } from '@mui/material'
 import { useState } from 'react'
-import { Tvar } from './components/tvar/Tvar'
+import { Tvar } from '../../../components/tvar/Tvar'
 
 const TABS = {
   tavar: <Tvar />,

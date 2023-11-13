@@ -1,8 +1,8 @@
 import { Box, Button } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { AppDispatch, useAppSelector } from '../../../../../redux/store'
-import { CakeShape } from '../../../../../types/cake'
-import { setPortions, setShape } from '../../../../../redux/features/cake-slice'
+import { AppDispatch, useAppSelector } from '../../redux/store'
+import { CakeShape } from '../../types/cake'
+import { setPortions, setShape } from '../../redux/features/cake-slice'
 import { useState } from 'react'
 
 const HIGHLIGHT_COLOR = 'green'
