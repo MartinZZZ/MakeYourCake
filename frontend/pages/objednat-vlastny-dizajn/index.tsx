@@ -1,14 +1,16 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Button, Tab } from '@mui/material'
 import { useState } from 'react'
-import { Tvar } from '../../../components/tvar/Tvar'
+import { Tvar } from '../../components/tvar/Tvar'
+import { Prichut } from '../../components/prichut/Prichut'
+import { Poleva } from '../../components/poleva/Poleva'
+import { Zhrnutie } from '../../components/zhrnutie/Zhrnutie'
 
 const TABS = {
-  tavar: <Tvar />,
-  príchuť: <Box />,
-  poleva: <Box />,
-  dekorácie: <Box />,
-  zhrnutie: <Box />,
+  tvar: <Tvar />,
+  príchuť: <Prichut />,
+  poleva: <Poleva />,
+  zhrnutie: <Zhrnutie />,
 }
 
 export default function NovyDizajn() {
