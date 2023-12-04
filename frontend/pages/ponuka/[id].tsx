@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { Box, Button, Card, CardMedia, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material';
+import { Box, Button, Card, CardMedia, Dialog, DialogActions, DialogTitle, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import { ShoppingCartOutlined } from '@mui/icons-material';
+import { ShoppingCartOutlined, ShoppingCart } from '@mui/icons-material';
+import React from 'react';
 
 const CakeDetail = () => {
     const router = useRouter();
@@ -24,6 +25,7 @@ const CakeDetail = () => {
 
     const [size, setSize] = useState('12');
     const [flavour, setFlavour] = useState('');
+
     const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.persist();
         const newSize = (event.target as HTMLInputElement).value;
@@ -43,6 +45,23 @@ const CakeDetail = () => {
         const newFlavour = (event.target as HTMLInputElement).value;
         setFlavour(newFlavour);
     };
+
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleToCart = () => {
+        setOpen(false);
+        router.push({
+            pathname: '/kosik',
+            query: {id: id, name: name, description: description, price: totalPrice}
+        })
+    };
+
+
 
     return (
         <Box my={5}>
@@ -111,18 +130,23 @@ const CakeDetail = () => {
                             <Button
                                 variant="contained" 
                                 endIcon={<ShoppingCartOutlined/>}
-                                onClick={() => {
-                                    console.log('klikol si na kupit')
-                                    console.log('id: ', id, 'name: ', name, 'description: ', description, 'size:', size, 'flavour:', flavour, 'price: ', totalPrice)
-                                    // dispatch(setCakeInfo({id: selectedId, name: selectedName, description: selectedDescription, price: selectedPrice}))
-                                    // dispatch(setCakeInfo({id: id, name: name, description: description, price: totalPrice}))
-                                    // router.push({
-                                    //     pathname: '/kosik',
-                                    //     query: {id: id, name: name, description: description, price: totalPrice}
-                                    // })
-                                }}
+                                onClick={handleClickOpen}
                             > Kúpiť
                             </Button>
+                            <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">
+                                    <Typography variant="h6" my={2}>Zvolená pololožka bola pridaná do košíka.</Typography>
+                                </DialogTitle>
+                                <DialogActions style={{justifyContent: 'space-between'}}>
+                                    <Button onClick={handleClose}>Pokračovať v nákupe</Button>
+                                    <Button onClick={handleToCart} endIcon={<ShoppingCart/>} autoFocus>Do košíka</Button>
+                                </DialogActions>
+                            </Dialog>
                         </Box>
                     </Grid>
                 </Grid>
