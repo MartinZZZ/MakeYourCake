@@ -3,7 +3,9 @@ import { Navbar } from './Navbar'
 import { usePathname } from 'next/navigation'
 
 export const Header = () => {
-  const pathName = usePathname().substring(1)
+  var pathName = ''
+  if (usePathname() != null)
+    pathName = usePathname().substring(1)
   const trimTo =
     pathName.indexOf('/') < 0 ? pathName.length : pathName.indexOf('/')
   const currentTab = pathName.substring(0, trimTo)
