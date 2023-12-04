@@ -7,7 +7,7 @@ type Props = {
 
 const TABS = {
   '': 'O nás',
-  galeria: 'Galéria',
+  ponuka: 'Ponuka',
   objednat: 'Objednať',
 }
 
