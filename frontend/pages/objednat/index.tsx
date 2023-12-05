@@ -13,7 +13,7 @@ export default function Objednat() {
         pt={10}
       >
         <Box maxWidth="45%">
-          <Button variant="contained" onClick={() => router.push('/galeria')}>
+          <Button variant="contained" onClick={() => router.push('/ponuka')}>
             <Typography align="center" variant="h1">
               Objednaj existujuci dizajn
             </Typography>
