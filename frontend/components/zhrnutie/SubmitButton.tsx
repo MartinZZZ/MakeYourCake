@@ -4,12 +4,18 @@ import Tooltip from '@mui/material/Tooltip'
 type Props = {
   text: string
   disabled: boolean
+  onClick?: () => void
 }
 
-export const SubmitButton = ({ text, disabled }: Props) => {
+export const SubmitButton = ({ text, disabled, onClick }: Props) => {
   if (!disabled) {
     return (
-      <Button fullWidth variant="contained" disabled={disabled}>
+      <Button
+        fullWidth
+        variant="contained"
+        disabled={disabled}
+        onClick={onClick}
+      >
         {text}
       </Button>
     )

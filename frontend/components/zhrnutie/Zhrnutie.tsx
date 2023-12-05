@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Typography } from '@mui/material'
+import { Box, Button, Dialog, Paper, Typography } from '@mui/material'
 import { Section } from '../Section'
 import { useAppSelector } from '../../redux/store'
 import { LabelTextPair } from '../LabelTextPair'
@@ -6,13 +6,20 @@ import { Torta } from '../Torta'
 import { Rez } from '../Rez'
 import { getTranslation } from '../../helpers/getTranslation'
 import { SubmitButton } from './SubmitButton'
+import { useState } from 'react'
 
 export const Zhrnutie = () => {
   const { limitations, ...rest } = useAppSelector((state) => state.cakeReducer)
 
+  const [open, setOpen] = useState(false)
+
   const isSubmitButtonDisabled = Object.values(rest).some(
     (value) => value === undefined
   )
+
+  const onSubmit = () => {
+    setOpen(true)
+  }
 
   const limitationText = Object.entries(limitations)
     .reduce((acc, [key, value]) => {
@@ -42,13 +49,25 @@ export const Zhrnutie = () => {
         ))}
         <LabelTextPair label="Obmedzenia" text={limitationText} />
       </Box>
-      <SubmitButton disabled={isSubmitButtonDisabled} text="Vložiť do košíka" />
+      <SubmitButton
+        disabled={isSubmitButtonDisabled}
+        text="Vložiť do košíka"
+        onClick={onSubmit}
+      />
     </Paper>
   )
   return (
-    <Section
-      leftSideElement={leftSideElement}
-      rightSideElement={rightSideElement}
-    />
+    <>
+      <Section
+        leftSideElement={leftSideElement}
+        rightSideElement={rightSideElement}
+      />
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <Typography sx={{ p: 2 }}>
+          Torta bola úspešne vložená do košíka
+        </Typography>
+        <Button onClick={() => setOpen(false)}>Zavrieť</Button>
+      </Dialog>
+    </>
   )
 }

@@ -3,7 +3,7 @@ import { useAppSelector } from '../redux/store'
 import { Dough, Filling } from '../types/cake'
 
 const fillingColor: Record<Filling | 'none', string> = {
-  chocolate: 'brown',
+  chocolate: '#422503',
   strawberry: 'red',
   vanilla: 'yellow',
   none: '#D9D9D9',
