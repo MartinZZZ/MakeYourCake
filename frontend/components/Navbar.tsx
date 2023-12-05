@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 const TABS = {
   '': 'O nás',
   ponuka: 'Ponuka',
-  objednat: 'Objednať',
+  'objednat-vlastny-dizajn': 'Objednať vlastný dizajn',
 }
 
 type NavbarItemProps = {
@@ -39,7 +39,7 @@ const NavbarItem = ({ tab, label, isCurrentTab }: NavbarItemProps) => {
         },
       }}
     >
-      {label}
+      <Typography>{label}</Typography>
     </Box>
   )
 }

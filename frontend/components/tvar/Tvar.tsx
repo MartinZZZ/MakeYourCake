@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch, useAppSelector } from '../../redux/store'
 import { CakeShape } from '../../types/cake'
 import { setPortions, setShape } from '../../redux/features/cake-slice'
-import { useState } from 'react'
 
 const HIGHLIGHT_COLOR = 'green'
 const BORDER_THICKNESS = 10
@@ -116,6 +115,7 @@ export const Tvar = () => {
         >
           {ROUND_SIZES.map(({ size, portions }) => (
             <PortionButton
+              key={size}
               size={size}
               portions={portions}
               selectedPortions={selectedPortions}
@@ -135,6 +135,7 @@ export const Tvar = () => {
         >
           {SQUARE_SIZES.map(({ size, portions }) => (
             <PortionButton
+              key={size}
               size={size}
               portions={portions}
               selectedPortions={selectedPortions}
