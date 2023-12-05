@@ -5,7 +5,7 @@ import { useAppSelector } from '../redux/store'
 const creamColor: Record<Cream | 'none', string> = {
   white: 'white',
   yellow: 'yellow',
-  brown: 'brown',
+  brown: '#422503',
   red: 'red',
   none: '#D9D9D9',
 }
