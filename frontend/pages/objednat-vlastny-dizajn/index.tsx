@@ -5,12 +5,14 @@ import { Tvar } from '../../components/tvar/Tvar'
 import { Prichut } from '../../components/prichut/Prichut'
 import { Poleva } from '../../components/poleva/Poleva'
 import { Zhrnutie } from '../../components/zhrnutie/Zhrnutie'
+import { Doplnky } from '../../components/Doplnky'
 
 const TABS = {
   tvar: <Tvar />,
   príchuť: <Prichut />,
   poleva: <Poleva />,
   zhrnutie: <Zhrnutie />,
+  doplnky: <Doplnky />,
 }
 
 export default function NovyDizajn() {
