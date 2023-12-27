@@ -1,14 +1,19 @@
-import {Box, Button, Paper, Tab, TextField, Typography} from '@mui/material'
-import {Section} from "../../components/Section";
-import {Torta} from "../../components/Torta";
-import {Rez} from "../../components/Rez";
-import {LabelTextPair} from "../../components/LabelTextPair";
+import {Box, Button, Typography} from '@mui/material'
+
 import {useAppSelector} from "../../redux/store";
 import {getTranslation} from "../../helpers/getTranslation";
+import {useState} from "react";
+
+import {KosikPolozka} from "../../components/kosik/KosikPolozka";
+import {UpdateKosik} from "../../components/kosik/UpdateKosik";
+import {KosikItems} from "../../components/kosik/KosikItems";
+
 
 export default function Kosik() {
+
     const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
 
+    console.log('test', limitations, rest);
     const limitationText = Object.entries(limitations)
         .reduce((acc, [key, value]) => {
             if (value) {
@@ -22,54 +27,38 @@ export default function Kosik() {
         (value) => value === undefined
     )
 
-    const leftSideElement = (
-        <Paper sx={{p: 2, display: 'flex', flexDirection: 'row', gap: 1, width: '100%'}}>
-            <Box sx={{display: 'flex', flexDirection: 'column', width: '50%'}}>
-                <Torta/>
-            </Box>
-            <Box sx={{display: 'flex', flexDirection: 'column', width: '50%', height: '20%'}}>
-                <Rez/>
-            </Box>
-        </Paper>
-    )
 
-    const rightSideElement = (
-        <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', gap: 4}}>
-            <Box>
-                {Object.entries(rest).map(([key, value]) => (
-                    <LabelTextPair key={key} label={key} text={value?.toString()}/>
-                ))}
-                <LabelTextPair label="Obmedzenia" text={limitationText}/>
-                <LabelTextPair label="Cena" text='50€'/>
+    // if (isSubmitButtonDisabled) {
+    //     return (
+    //
+    //         <Box sx={{width: '100%', typography: 'body1'}}>
+    //             <Typography variant="h2" component="h2">
+    //                 V košíku sa nič nenachádza
+    //             </Typography>
+    //
+    //             <Button variant="contained" href='/objednat-vlastny-dizajn'>
+    //                 Objednať vlastný dizajn
+    //             </Button>
+    //
+    //         </Box>
+    //     )
+    // }
 
-            </Box>
-        </Paper>
-    )
-    if (isSubmitButtonDisabled) {
-        return (
-
-            <Box sx={{width: '100%', typography: 'body1'}}>
-                <Typography variant="h2" component="h2">
-                    V košíku sa nič nenachádza
-                </Typography>
-
-                <Button variant="contained" href='/objednat-vlastny-dizajn'>
-                    Objednať vlastný dizajn
-                </Button>
-
-            </Box>
-        )
-    } else
-
-        return (<Box sx={{width: '100%', typography: 'body1'}}>
+    return (<Box sx={{width: '100%', typography: 'body1'}}>
 
             <Typography variant="h2" component="h2">
                 Košík
             </Typography>
-            <Section
-                leftSideElement={leftSideElement}
-                rightSideElement={rightSideElement}
-            />
+
+
+            {KosikItems.zPonuky.map(function(object, i){
+                return KosikPolozka(rest, limitationText);
+            })}
+
+            {KosikItems.vlastnyDizajn.map(function(object, i){
+                return KosikPolozka(rest, limitationText);
+            })}
+
 
             <Box sx={{
                 display: 'flex', justifyContent: 'center', minHeight: '10vh'
@@ -79,5 +68,8 @@ export default function Kosik() {
                 </Button>
             </Box>
 
-        </Box>)
+
+        </Box>
+    )
+
 }
