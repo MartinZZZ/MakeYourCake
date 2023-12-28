@@ -16,10 +16,16 @@ const doughColor: Record<Dough | 'none', string> = {
   none: '#C3C3C0',
 }
 
-export const Rez = () => {
-  const selectedFilling = useAppSelector((state) => state.cakeReducer.filling)
-  const selectedDough = useAppSelector((state) => state.cakeReducer.dough)
-  return (
+export const Rez = (filling :string = null, dough:string = null) => {
+  let selectedFilling = useAppSelector((state) => state.cakeReducer.filling)
+  let selectedDough = useAppSelector((state) => state.cakeReducer.dough)
+
+    if (filling.length>=1 && dough.length>=1 ) {
+        selectedFilling = filling
+        selectedDough = dough
+    }
+
+    return (
     <>
       <Box
         sx={{

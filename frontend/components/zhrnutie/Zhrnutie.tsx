@@ -7,7 +7,7 @@ import {Rez} from '../Rez'
 import {getTranslation} from '../../helpers/getTranslation'
 import {SubmitButton} from './SubmitButton'
 import {useState} from 'react'
-import {UpdateKosik} from "../kosik/UpdateKosik";
+import {AddToKosik} from "../kosik/UpdateKosik";
 
 export const Zhrnutie = () => {
     const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
@@ -19,12 +19,8 @@ export const Zhrnutie = () => {
     )
 
     const onSubmit = () => {
-        console.log("...!!!!!!!!!!");
         setOpen(true);
-        UpdateKosik(true);
-
-
-
+        AddToKosik(true, rest, limitations);
     }
 
     const limitationText = Object.entries(limitations)

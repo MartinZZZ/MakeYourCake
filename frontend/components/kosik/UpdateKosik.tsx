@@ -1,10 +1,20 @@
 import {KosikItems} from "./KosikItems";
 
 
-export const UpdateKosik = (vlasty) =>{
+export const AddToKosik = (vlastny: boolean, rest, limitations = null, id = null) => {
 
-    KosikItems.pocet[0]++
+    if (vlastny) {
+        // console.log(rest)
+        KosikItems.vlastnyDizajn.push({'rest': rest, 'limitations': limitations});
 
-    console.log("mm", KosikItems.pocet)
+        // console.log('VLASTNY DIZAJ', KosikItems.vlastnyDizajn)
+    } else {
+        KosikItems.zPonuky.push({'id': id, 'rest': rest, 'amount': 1});
+        // console.log(KosikItems.zPonuky)
+    }
+
+}
+
+export const RemoveFromKosik = (vlastny: boolean, id = null) =>{
 
 }

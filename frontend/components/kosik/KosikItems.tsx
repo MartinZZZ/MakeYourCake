@@ -15,10 +15,8 @@ export const KosikItems = {
     // }] = [],
 
     vlastnyDizajn: [] = [],
-    zPonuky: [] = [1, 2 ,3],
+    zPonuky: [] = [],
 
-
-    pocet: [] = [0]
 
 }
 

@@ -1,48 +1,66 @@
 import {Box, Button, Typography} from '@mui/material'
 
-import {useAppSelector} from "../../redux/store";
 import {getTranslation} from "../../helpers/getTranslation";
-import {useState} from "react";
+import React from "react";
 
-import {KosikPolozka} from "../../components/kosik/KosikPolozka";
-import {UpdateKosik} from "../../components/kosik/UpdateKosik";
+import {KosikItemVlastny} from "../../components/kosik/KosikItemVlastny";
 import {KosikItems} from "../../components/kosik/KosikItems";
+import {KosikItemZPonuky} from "../../components/kosik/KosikItemZPonuky";
+import {Section} from "../../components/Section";
 
 
 export default function Kosik() {
 
-    const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
-
-    console.log('test', limitations, rest);
-    const limitationText = Object.entries(limitations)
-        .reduce((acc, [key, value]) => {
-            if (value) {
-                return `${acc} ${getTranslation(key)},`
-            }
-            return acc
-        }, '')
-        .slice(0, -1)
-
-    const isSubmitButtonDisabled = Object.values(rest).some(
-        (value) => value === undefined
-    )
+    // const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
 
 
-    // if (isSubmitButtonDisabled) {
-    //     return (
-    //
-    //         <Box sx={{width: '100%', typography: 'body1'}}>
-    //             <Typography variant="h2" component="h2">
-    //                 V košíku sa nič nenachádza
-    //             </Typography>
-    //
-    //             <Button variant="contained" href='/objednat-vlastny-dizajn'>
-    //                 Objednať vlastný dizajn
-    //             </Button>
-    //
-    //         </Box>
-    //     )
+    // const limitationText = Object.entries(limitations)
+    //     .reduce((acc, [key, value]) => {
+    //         if (value) {
+    //             return `${acc} ${getTranslation(key)},`
+    //         }
+    //         return acc
+    //     }, '')
+    //     .slice(0, -1)
+
+
+    // let limText = (l) => {
+    //     Object.entries(l)
+    //         .reduce((acc, [key, value]) => {
+    //             if (value) {
+    //                 return `${acc} ${getTranslation(key)},`
+    //             }
+    //             return acc
+    //         }, '')
+    //         .slice(0, -1)
     // }
+
+
+    if (KosikItems.zPonuky.length == 0 && KosikItems.vlastnyDizajn.length == 0) {
+        return (
+            <Box sx={{width: '100%', typography: 'body1'}}>
+                <Typography variant="h2" component="h2">
+                    V košíku sa nič nenachádza
+                </Typography>
+
+
+                <Section
+                    leftSideElement={
+                        <Button href='/objednat-vlastny-dizajn'>
+                            Objednať vlastný dizajn
+                        </Button>
+                    }
+                    rightSideElement={
+                        <Button href='/ponuka'>
+                            Objednať z ponuky
+                        </Button>
+                    }
+                />
+
+
+            </Box>
+        )
+    }
 
     return (<Box sx={{width: '100%', typography: 'body1'}}>
 
@@ -51,12 +69,13 @@ export default function Kosik() {
             </Typography>
 
 
-            {KosikItems.zPonuky.map(function(object, i){
-                return KosikPolozka(rest, limitationText);
+            {KosikItems.zPonuky.map(function (object, i) {
+                return KosikItemZPonuky(object.rest, 'limitations', object.id);
             })}
 
-            {KosikItems.vlastnyDizajn.map(function(object, i){
-                return KosikPolozka(rest, limitationText);
+            {KosikItems.vlastnyDizajn.map(function (object, i) {
+                // console.log('OBJECT', object)
+                return KosikItemVlastny(object.rest, '...'); //todo limitationstext
             })}
 
 

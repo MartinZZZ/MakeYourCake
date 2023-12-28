@@ -4,15 +4,15 @@ import {Rez} from "../Rez";
 import {LabelTextPair} from "../LabelTextPair";
 import {Section} from "../Section";
 
-export function KosikPolozka(rest, limitationText) {
+export function KosikItemVlastny(rest, limitationText) {
 
     const leftSideElement = (
         <Paper sx={{p: 2, display: 'flex', flexDirection: 'row', gap: 1, width: '100%'}}>
             <Box sx={{display: 'flex', flexDirection: 'column', width: '50%'}}>
-                <Torta/>
+                {Torta(rest.cream, rest.frosting)}
             </Box>
             <Box sx={{display: 'flex', flexDirection: 'column', width: '50%', height: '20%'}}>
-                <Rez/>
+                {Rez(rest.filling, rest.dough)}
             </Box>
         </Paper>
     )
