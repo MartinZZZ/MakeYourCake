@@ -39,8 +39,8 @@ export default function Kosik() {
     if (KosikItems.zPonuky.length == 0 && KosikItems.vlastnyDizajn.length == 0) {
         return (
             <Box sx={{width: '100%', typography: 'body1'}}>
-                <Typography variant="h2" component="h2">
-                    V košíku sa nič nenachádza
+                <Typography variant="h3" component="h2">
+                    Košík je prázdny
                 </Typography>
 
 
