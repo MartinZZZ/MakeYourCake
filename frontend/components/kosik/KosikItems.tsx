@@ -1,22 +1,26 @@
-import {number} from "prop-types";
-
 
 export const KosikItems = {
 
-    // vlastnyDizajn: [{
-    //     limitations: {},
-    //     rest: {},
-    //     amount:number
-    // }] = [],
+    // vlastnyDizajn: {
+    //     amount: number,
+    //     properties: {rest, limitations}
+    // }
+
+    //     price
     //
+
     // zPonuky: [{
     //     typ: number,
     //     amount: number
     // }] = [],
 
-    vlastnyDizajn: [] = [],
+    // vlastnyDizajn: [] = [],
     zPonuky: [] = [],
 
 
+    experimentItemVlastne: {} = {},
+    experimentItemZPonuky: {} = {}
+
 }
+
 

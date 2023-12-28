@@ -36,7 +36,8 @@ export default function Kosik() {
     // }
 
 
-    if (KosikItems.zPonuky.length == 0 && KosikItems.vlastnyDizajn.length == 0) {
+    // if (KosikItems.zPonuky.length == 0 && KosikItems.vlastnyDizajn.length == 0) {
+    if (KosikItems.zPonuky.length == 0 && Object.keys(KosikItems.experimentItemVlastne).length === 0) {
         return (
             <Box sx={{width: '100%', typography: 'body1'}}>
                 <Typography variant="h3" component="h2">
@@ -73,11 +74,10 @@ export default function Kosik() {
                 return KosikItemZPonuky(object.rest, 'limitations', object.id);
             })}
 
-            {KosikItems.vlastnyDizajn.map(function (object, i) {
-                // console.log('OBJECT', object)
-                return KosikItemVlastny(object.rest, '...'); //todo limitationstext
-            })}
 
+            {Object.entries(KosikItems.experimentItemVlastne).map(([key, value]) => {
+                return KosikItemVlastny(value); //todo limitationstext
+            })            }
 
             <Box sx={{
                 display: 'flex', justifyContent: 'center', minHeight: '10vh'

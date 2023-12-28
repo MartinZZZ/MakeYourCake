@@ -1,9 +1,19 @@
-import {Box, Card, CardMedia, Paper} from "@mui/material";
+import {Box, Button, Card, CardMedia, Paper} from "@mui/material";
 import {LabelTextPair} from "../LabelTextPair";
 import {Section} from "../Section";
 import React from "react";
+import {onClickAddToKosik, onClickRemoveFromKosik} from "./UpdateKosik";
+
 
 export function KosikItemZPonuky(rest, limitationText, id) {
+
+    const onClickAdd = () => {
+        // onClickAddToKosik(false,item);
+    }
+
+    const onClickRemove = () => {
+        // onClickRemoveFromKosik(false, item);
+    }
 
     const leftSideElement = (
         <Paper sx={{p: 2, display: 'flex', flexDirection: 'row', gap: 1, width: '100%', justifyContent: 'center'}}>
@@ -26,14 +36,29 @@ export function KosikItemZPonuky(rest, limitationText, id) {
     )
 
     const rightSideElement = (
-        <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', gap: 4}}>
+
+        <Paper sx={{p: 2, display: 'flex', flexDirection: 'row', gap: 4}}>
+
             <Box>
                 {Object.entries(rest).map(([key, value]) => (
                     <LabelTextPair key={key} label={key} text={value?.toString()}/>
                 ))}
                 {/*<LabelTextPair label="Obmedzenia" text={limitationText}/>*/}
                 <LabelTextPair label="Cena" text='50€'/>
+                {/* todo cena a popisy*/}
 
+            </Box>
+
+            <Box sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
+                <Button onClick={onClickAdd}>
+                    +
+                </Button>
+
+                5
+
+                <Button onClick={onClickRemove}>
+                    -
+                </Button>
             </Box>
         </Paper>
     )
