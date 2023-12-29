@@ -3,10 +3,9 @@ import {Box, Button, Typography} from '@mui/material'
 import {getTranslation} from "../../helpers/getTranslation";
 import React from "react";
 
-import {KosikItemVlastny} from "../../components/kosik/KosikItemVlastny";
 import {KosikItems} from "../../components/kosik/KosikItems";
-import {KosikItemZPonuky} from "../../components/kosik/KosikItemZPonuky";
 import {Section} from "../../components/Section";
+import {KosikItem} from "../../components/kosik/KosikItem";
 
 
 export default function Kosik() {
@@ -43,7 +42,6 @@ export default function Kosik() {
                     Košík je prázdny
                 </Typography>
 
-
                 <Section
                     leftSideElement={
                         <Button href='/objednat-vlastny-dizajn'>
@@ -69,12 +67,16 @@ export default function Kosik() {
             </Typography>
 
             {Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
-                return KosikItemZPonuky(value);
+                // return KosikItemZPonuky(value);
+                return KosikItem(false, value);
             })}
 
             {Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
-                return KosikItemVlastny(value);
+                // return KosikItemVlastny(value);
+                return KosikItem(true, value);
+
             })}
+
 
             <Box sx={{
                 display: 'flex', justifyContent: 'center', minHeight: '10vh'
