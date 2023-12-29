@@ -1,17 +1,18 @@
 
 export const KosikItems = {
-
-    experimentItemVlastne: {} = {},
-    experimentItemZPonuky: {} = {}
-
+    ItemsVlastnyDizajn: {} = {},
+    ItemsZPonuky: {} = {}
 }
 
 export const ItemVlastna = (props) => {
+
     return {
+        'portions': props.rest.portions,
+        'shape': props.rest.shape,
         'cream': props.rest.cream,
         'frosting': props.rest.frosting,
         'filling': props.rest.filling,
-        'dough': props.rest.dough,
+        'dough': props.rest.dough
     }
 }
 
@@ -22,8 +23,6 @@ export const ItemZPonuky = (props) => {
         'flavour': props.rest.flavour,
     }
 }
-
-
 
 
 // vrati item ako string - key pri AddToKosik

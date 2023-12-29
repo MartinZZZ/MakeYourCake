@@ -36,7 +36,7 @@ export default function Kosik() {
     // }
 
 
-    if (Object.keys(KosikItems.experimentItemZPonuky).length + Object.keys(KosikItems.experimentItemVlastne).length === 0) {
+    if (Object.keys(KosikItems.ItemsZPonuky).length + Object.keys(KosikItems.ItemsVlastnyDizajn).length === 0) {
         return (
             <Box sx={{width: '100%', typography: 'body1'}}>
                 <Typography variant="h3" component="h2">
@@ -68,11 +68,11 @@ export default function Kosik() {
                 Košík
             </Typography>
 
-            {Object.entries(KosikItems.experimentItemZPonuky).map(([key, value]) => {
+            {Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
                 return KosikItemZPonuky(value);
             })}
 
-            {Object.entries(KosikItems.experimentItemVlastne).map(([key, value]) => {
+            {Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
                 return KosikItemVlastny(value);
             })}
 

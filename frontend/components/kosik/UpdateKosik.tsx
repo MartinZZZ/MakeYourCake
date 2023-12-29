@@ -8,21 +8,21 @@ export const AddToKosik = (vlastny: boolean, rest, limitations = null, id = null
         let newItem = ItemVlastna({rest, limitations});
         let name = ItemToString(newItem)
 
-        if (!KosikItems.experimentItemVlastne[name]) {
-            KosikItems.experimentItemVlastne[name] = {'amount': 0, 'properties': newItem, 'price': price}
+        if (!KosikItems.ItemsVlastnyDizajn[name]) {
+            KosikItems.ItemsVlastnyDizajn[name] = {'amount': 0, 'properties': newItem, 'price': price}
         }
-        KosikItems.experimentItemVlastne[name].amount++
+        KosikItems.ItemsVlastnyDizajn[name].amount++
 
     } else {
 
         let newItem = ItemZPonuky({rest, limitations});
         let name = ItemToString(newItem)
 
-        if (!KosikItems.experimentItemZPonuky[name]) {
-            KosikItems.experimentItemZPonuky[name] = {'amount': 0, 'properties': newItem, 'price': price, 'id': id}
+        if (!KosikItems.ItemsZPonuky[name]) {
+            KosikItems.ItemsZPonuky[name] = {'amount': 0, 'properties': newItem, 'price': price, 'id': id}
         }
 
-        KosikItems.experimentItemZPonuky[name].amount++
+        KosikItems.ItemsZPonuky[name].amount++
     }
 }
 
@@ -30,5 +30,5 @@ export const AddToKosik = (vlastny: boolean, rest, limitations = null, id = null
 export const UpdateKosik = (vlastny, item) => {
 
     if (item.amount > 0) return
-    vlastny ? delete KosikItems.experimentItemVlastne[ItemToString(item.properties)] : delete KosikItems.experimentItemZPonuky[ItemToString(item.properties)]
+    vlastny ? delete KosikItems.ItemsVlastnyDizajn[ItemToString(item.properties)] : delete KosikItems.ItemsZPonuky[ItemToString(item.properties)]
 }
