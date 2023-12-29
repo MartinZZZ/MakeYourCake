@@ -1,24 +1,19 @@
-import {BottomNavigation, Box, Button, Paper, Typography} from '@mui/material'
+import {Box, Typography} from '@mui/material'
 
-import {getTranslation} from "../../helpers/getTranslation";
 import React, {useState} from "react";
 
 import {KosikItems} from "../../components/kosik/KosikItems";
-import {Section} from "../../components/Section";
-import {KosikItem} from "../../components/kosik/KosikItem";
+import {KosikItem} from "../../components/kosik/kosikItem/KosikItem";
+import {KosikFooter} from "../../components/kosik/KosikFooter";
 
 
 export default function Kosik() {
 
     const [price, setPrice] = useState(getPrice)
 
-    function updatePrice(){
-        setPrice(getPrice)
-    }
 
     function getPrice() {
         let sum = 0
-
         Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
             sum += value.price * value.amount
         })
@@ -29,6 +24,9 @@ export default function Kosik() {
         return sum
     }
 
+    function updatePrice() {
+        setPrice(getPrice)
+    }
 
     // const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
 
@@ -55,70 +53,47 @@ export default function Kosik() {
     // }
 
 
-    if (Object.keys(KosikItems.ItemsZPonuky).length + Object.keys(KosikItems.ItemsVlastnyDizajn).length === 0) {
-        return (
-            <Box sx={{width: '100%', typography: 'body1'}}>
-                <Typography variant="h3" component="h2">
+    function prazdnyKosikText() {
+        if (price <= 0)
+            return (
+                <Typography variant="h3" component="h3">
                     Košík je prázdny
-                </Typography>
+                </Typography>)
 
-                <Section
-                    leftSideElement={
-                        <Button href='/objednat-vlastny-dizajn'>
-                            Objednať vlastný dizajn
-                        </Button>
-                    }
-                    rightSideElement={
-                        <Button href='/ponuka'>
-                            Objednať z ponuky
-                        </Button>
-                    }
-                />
-
-
-            </Box>
-        )
+        return (<></>)
     }
 
-    return (<Box sx={{width: '100%', typography: 'body1'}} onClick={updatePrice}>
+
+    // funkcia na skryvanie objektov v kosiku kde pocet je 0
+    function displayItemBox(vlastny, name) {
+        let zoz = vlastny ? KosikItems.ItemsVlastnyDizajn : KosikItems.ItemsZPonuky
+        return (zoz[name].amount > 0) ? 'show' : 'none'
+    }
+
+    return (
+        <Box sx={{width: '100%', typography: 'body1'}} onClick={updatePrice}>
 
             <Typography variant="h2" component="h2">
                 Košík
             </Typography>
 
-            {Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
-                return KosikItem(false, value);
-            })}
+            {prazdnyKosikText()}
 
-            {Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
-                return KosikItem(true, value);
-            })}
+            {Object.keys(KosikItems.ItemsZPonuky).map(name => (
+                <Box display={displayItemBox(false, name)}>{KosikItem(false, KosikItems.ItemsZPonuky[name])}</Box>
+            ))}
 
+            {Object.keys(KosikItems.ItemsVlastnyDizajn).map(name => (
+                <Box display={displayItemBox(true, name)}>{KosikItem(true, KosikItems.ItemsVlastnyDizajn[name])}</Box>
+            ))}
 
             <Box sx={{
-                display: 'flex', justifyContent: 'center', minHeight: '10vh',
-                padding: '0 0 100px 0'
+                display: 'flex', justifyContent: 'center', minHeight: '10vh', padding: '0 0 100px 0'
             }}>
-
+                {KosikFooter(price)}
             </Box>
 
-
-            <Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0, height: '150px', zIndex:999}} elevation={3}>
-                <BottomNavigation>
-                    <Box>
-                        <p>cena celkom: {price} € </p>
-                        <Button variant="contained">
-                            Späť k nákupu
-                        </Button>
-                        <Button variant="contained">
-                            Prejsť k platbe
-                        </Button>
-                    </Box>
-                </BottomNavigation>
-            </Paper>
-
         </Box>
-
 
     )
 

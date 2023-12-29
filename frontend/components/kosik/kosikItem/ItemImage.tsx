@@ -1,8 +1,8 @@
 import {Box, Card, CardMedia, Paper} from "@mui/material";
 
 import React from "react";
-import {Torta} from "../Torta";
-import {Rez} from "../Rez";
+import {Torta} from "../../Torta";
+import {Rez} from "../../Rez";
 
 export function ItemImage(vlastny, item) {
 

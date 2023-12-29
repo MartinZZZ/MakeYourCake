@@ -1,7 +1,7 @@
 import {Box} from "@mui/material";
 
 import React from "react";
-import {LabelTextPair} from "../LabelTextPair";
+import {LabelTextPair} from "../../LabelTextPair";
 
 export function ItemDetail(vlastny, item) {
 

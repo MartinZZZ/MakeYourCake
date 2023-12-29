@@ -27,8 +27,27 @@ export const AddToKosik = (vlastny: boolean, rest, limitations = null, id = null
 }
 
 
-export const UpdateKosik = (vlastny, item) => {
+// export const UpdateKosik = (vlastny, item) => {
+//     if (item.amount <= 0) vlastny ? delete KosikItems.ItemsVlastnyDizajn[ItemToString(item.properties)] : delete KosikItems.ItemsZPonuky[ItemToString(item.properties)]
+// }
 
-    if (item.amount > 0) return
-    vlastny ? delete KosikItems.ItemsVlastnyDizajn[ItemToString(item.properties)] : delete KosikItems.ItemsZPonuky[ItemToString(item.properties)]
-}
+// export const UpdateKosik = () => {
+//     let item
+//     Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
+//         if (value.amount <= 0) item = value
+//     })
+//
+//     if (item) {
+//         delete KosikItems.ItemsVlastnyDizajn[ItemToString(item.properties)]
+//         return
+//     }
+//
+//     Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
+//         if (value.amount <= 0) item = value
+//     })
+//
+//     if (item) {
+//         delete KosikItems.ItemsZPonuky[ItemToString(item.properties)]
+//     }
+//
+// }

@@ -1,13 +1,12 @@
-import {Box, Grid} from "@mui/material";
+import {Grid, Paper} from "@mui/material";
 import React from "react";
 import {ItemImage} from "./ItemImage";
 import {ItemDetail} from "./ItemDetail";
 import {ItemPrice} from "./ItemPrice";
 
 export function KosikItem(vlastny, item) {
-
     return (
-        <Box sx={{width: '100%', typography: 'body1', padding: '20px'}}>
+        <Paper sx={{width: '100%', typography: 'body1', padding: '20px', margin:'20px'}}>
             <Grid container spacing={2} sx={{border: '1px solid black', minHeight: '200px', maxHeight: '200px'}}>
                 <Grid xs={4}
                       sx={{
@@ -28,6 +27,6 @@ export function KosikItem(vlastny, item) {
                 </Grid>
 
             </Grid>
-        </Box>
+        </Paper>
     )
 }
