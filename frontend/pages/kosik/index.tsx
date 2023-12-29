@@ -1,7 +1,7 @@
-import {Box, Button, Typography} from '@mui/material'
+import {BottomNavigation, Box, Button, Paper, Typography} from '@mui/material'
 
 import {getTranslation} from "../../helpers/getTranslation";
-import React from "react";
+import React, {useState} from "react";
 
 import {KosikItems} from "../../components/kosik/KosikItems";
 import {Section} from "../../components/Section";
@@ -9,6 +9,26 @@ import {KosikItem} from "../../components/kosik/KosikItem";
 
 
 export default function Kosik() {
+
+    const [price, setPrice] = useState(getPrice)
+
+    function updatePrice(){
+        setPrice(getPrice)
+    }
+
+    function getPrice() {
+        let sum = 0
+
+        Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
+            sum += value.price * value.amount
+        })
+
+        Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
+            sum += value.price * value.amount
+        })
+        return sum
+    }
+
 
     // const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
 
@@ -60,34 +80,46 @@ export default function Kosik() {
         )
     }
 
-    return (<Box sx={{width: '100%', typography: 'body1'}}>
+    return (<Box sx={{width: '100%', typography: 'body1'}} onClick={updatePrice}>
 
             <Typography variant="h2" component="h2">
                 Košík
             </Typography>
 
             {Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
-                // return KosikItemZPonuky(value);
                 return KosikItem(false, value);
             })}
 
             {Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
-                // return KosikItemVlastny(value);
                 return KosikItem(true, value);
-
             })}
 
 
             <Box sx={{
-                display: 'flex', justifyContent: 'center', minHeight: '10vh'
+                display: 'flex', justifyContent: 'center', minHeight: '10vh',
+                padding: '0 0 100px 0'
             }}>
-                <Button variant="contained">
-                    Prejsť k platbe
-                </Button>
+
             </Box>
 
 
+            <Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0, height: '150px', zIndex:999}} elevation={3}>
+                <BottomNavigation>
+                    <Box>
+                        <p>cena celkom: {price} € </p>
+                        <Button variant="contained">
+                            Späť k nákupu
+                        </Button>
+                        <Button variant="contained">
+                            Prejsť k platbe
+                        </Button>
+                    </Box>
+                </BottomNavigation>
+            </Paper>
+
         </Box>
+
+
     )
 
 }
