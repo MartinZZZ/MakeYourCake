@@ -9,12 +9,16 @@ import {UpdateKosik} from "./UpdateKosik";
 export function KosikItemVlastny(item) {
 
     const [amount, setAmount] = useState(item.amount)
+    const [price, setPrice] = useState(item.price)
+
     const properties = item.properties
 
 
     function updateAmount(add: boolean) {
         add ? item.amount++ : item.amount--
         setAmount(item.amount)
+
+        setPrice(item.amount * item.price)
 
         UpdateKosik(true, item)
     }
@@ -40,13 +44,13 @@ export function KosikItemVlastny(item) {
     )
 
     const rightSideElement = (
-        <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', gap: 4}}>
+        <Paper sx={{p: 2, display: 'flex', flexDirection: 'row', gap: 4}}>
             <Box>
                 {Object.entries(properties).map(([key, value]) => (
                     <LabelTextPair key={key} label={key} text={value?.toString()}/>
                 ))}
                 <LabelTextPair label="Obmedzenia" text={'limitationText'}/>
-                <LabelTextPair label="Cena" text='50€'/>
+                <LabelTextPair label="Cena" text={price.toString() + '€'}/>
 
             </Box>
 
@@ -57,7 +61,7 @@ export function KosikItemVlastny(item) {
 
                 {amount.toString()}
 
-                <Button onClick={onClickRemove}>
+                <Button onClick={onClickRemove} disabled={amount <= 1}>
                     -
                 </Button>
             </Box>
@@ -65,16 +69,14 @@ export function KosikItemVlastny(item) {
         </Paper>
     )
 
-    if (amount > 0) { //todo upravit, pridat X na odstranenie
 
-        return (<Box sx={{width: '100%', typography: 'body1'}}>
+    return (<Box sx={{width: '100%', typography: 'body1'}}>
 
-                <Section
-                    leftSideElement={leftSideElement}
-                    rightSideElement={rightSideElement}
-                /></Box>
-        )
-    }
+            <Section
+                leftSideElement={leftSideElement}
+                rightSideElement={rightSideElement}
+            /></Box>
+    )
 
     return <></>
 }

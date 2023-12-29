@@ -1,18 +1,33 @@
 import {Box, Button, Card, CardMedia, Paper} from "@mui/material";
 import {LabelTextPair} from "../LabelTextPair";
 import {Section} from "../Section";
-import React from "react";
-import {onClickAddToKosik, onClickRemoveFromKosik} from "./UpdateKosik";
+import React, {useState} from "react";
+import {UpdateKosik} from "./UpdateKosik";
 
 
-export function KosikItemZPonuky(rest, limitationText, id) {
+export function KosikItemZPonuky(item) {
+
+    const [amount, setAmount] = useState(item.amount)
+    const [price, setPrice] = useState(item.price)
+    const properties = item.properties
+    const id = item.id
+
+
+    function updateAmount(add: boolean) {
+        add ? item.amount++ : item.amount--
+        setAmount(item.amount)
+
+        setPrice(item.amount * item.price)
+
+        UpdateKosik(false, item)
+    }
 
     const onClickAdd = () => {
-        // onClickAddToKosik(false,item);
+        updateAmount(true)
     }
 
     const onClickRemove = () => {
-        // onClickRemoveFromKosik(false, item);
+        updateAmount(false)
     }
 
     const leftSideElement = (
@@ -40,12 +55,12 @@ export function KosikItemZPonuky(rest, limitationText, id) {
         <Paper sx={{p: 2, display: 'flex', flexDirection: 'row', gap: 4}}>
 
             <Box>
-                {Object.entries(rest).map(([key, value]) => (
+                {Object.entries(properties).map(([key, value]) => (
                     <LabelTextPair key={key} label={key} text={value?.toString()}/>
                 ))}
+
                 {/*<LabelTextPair label="Obmedzenia" text={limitationText}/>*/}
-                <LabelTextPair label="Cena" text='50€'/>
-                {/* todo cena a popisy*/}
+                <LabelTextPair label="Cena" text={price.toString() + '€'}/>
 
             </Box>
 
@@ -54,9 +69,9 @@ export function KosikItemZPonuky(rest, limitationText, id) {
                     +
                 </Button>
 
-                5
+                {amount.toString()}
 
-                <Button onClick={onClickRemove}>
+                <Button onClick={onClickRemove} disabled={amount<=1}>
                     -
                 </Button>
             </Box>

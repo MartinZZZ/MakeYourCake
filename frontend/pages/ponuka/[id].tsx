@@ -66,7 +66,7 @@ const CakeDetail = () => {
     const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
         setOpen(true)
-        AddToKosik(false, {'name': name, 'size': size, 'flavour': flavour}, null, id)
+        AddToKosik(false, {'name': name, 'size': size, 'flavour': flavour}, null, id, priceFromString)
     }
     const handleClose = () => {
         setOpen(false)

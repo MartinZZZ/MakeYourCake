@@ -36,8 +36,7 @@ export default function Kosik() {
     // }
 
 
-    // if (KosikItems.zPonuky.length == 0 && KosikItems.vlastnyDizajn.length == 0) {
-    if (KosikItems.zPonuky.length == 0 && Object.keys(KosikItems.experimentItemVlastne).length === 0) {
+    if (Object.keys(KosikItems.experimentItemZPonuky).length + Object.keys(KosikItems.experimentItemVlastne).length === 0) {
         return (
             <Box sx={{width: '100%', typography: 'body1'}}>
                 <Typography variant="h3" component="h2">
@@ -69,15 +68,13 @@ export default function Kosik() {
                 Košík
             </Typography>
 
-
-            {KosikItems.zPonuky.map(function (object, i) {
-                return KosikItemZPonuky(object.rest, 'limitations', object.id);
+            {Object.entries(KosikItems.experimentItemZPonuky).map(([key, value]) => {
+                return KosikItemZPonuky(value);
             })}
 
-
             {Object.entries(KosikItems.experimentItemVlastne).map(([key, value]) => {
-                return KosikItemVlastny(value); //todo limitationstext
-            })            }
+                return KosikItemVlastny(value);
+            })}
 
             <Box sx={{
                 display: 'flex', justifyContent: 'center', minHeight: '10vh'
