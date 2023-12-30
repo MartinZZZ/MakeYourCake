@@ -1,7 +1,9 @@
 import {BottomNavigation, Box, Button, Paper, Typography} from "@mui/material";
 import React from "react";
+import {useRouter} from "next/router";
 
 export function KosikFooter(price) {
+    const router = useRouter()
 
     function NonEmptyKosikFooter() {
         return (
@@ -22,11 +24,11 @@ export function KosikFooter(price) {
 
                 <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1}}>
 
-                    <Button size='large' variant="outlined" href={''}>
+                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/'})}>
                         Pokračovať v nákupe
                     </Button>
 
-                    <Button size='large' variant="outlined" href={''}>
+                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/platba'})}>
                         Pokračovať k platbe
                     </Button>
 

@@ -6,7 +6,7 @@ import {Add, Remove} from "@mui/icons-material";
 export function ItemPrice(vlastny, item) {
 
     const [amount, setAmount] = useState(item.amount)
-    const [price, setPrice] = useState(item.price)
+    const [price, setPrice] = useState(item.price*item.amount)
     const [open, setOpen] = useState(false)
 
     const handleClose = () => {
