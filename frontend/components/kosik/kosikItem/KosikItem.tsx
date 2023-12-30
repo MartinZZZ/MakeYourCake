@@ -6,23 +6,16 @@ import {ItemPrice} from "./ItemPrice";
 
 export function KosikItem(vlastny, item) {
     return (
-        <Paper sx={{width: '100%', typography: 'body1', padding: '20px', margin:'20px'}}>
-            <Grid container spacing={2} sx={{border: '1px solid black', minHeight: '200px', maxHeight: '200px'}}>
+        <Paper sx={{width: '100%', typography: 'body1', marginTop: '40px', marginBottom: '40px'}}>
+            <Grid container spacing={2} sx={{minHeight: '200px', maxHeight: '200px'}}>
                 <Grid xs={4}
-                      sx={{
-                          border: '1px solid black',
-                          minHeight: '200px',
-                          maxHeight: '200px',
-                          display: 'flex',
-                          justifyContent: 'center'
-                      }}>
+                      sx={{minHeight: '200px', maxHeight: '200px', display: 'flex', justifyContent: 'center'}}>
                     {ItemImage(vlastny, item)}
                 </Grid>
-                <Grid xs={4} sx={{border: '1px solid black', minHeight: '200px', padding: '10px'}}>
+                <Grid xs={4} sx={{minHeight: '200px', padding: '10px'}}>
                     {ItemDetail(vlastny, item)}
                 </Grid>
-                <Grid xs={4} sx={{border: '1px solid black', minHeight: '200px'}}>
-                    {/*<Box>xs=4</Box>*/}
+                <Grid xs={4} sx={{minHeight: '200px'}}>
                     {ItemPrice(vlastny, item)}
                 </Grid>
 

@@ -1,12 +1,11 @@
-import {Box, Button, Dialog, DialogActions, DialogTitle, Typography} from "@mui/material";
+import {Box, Button, Dialog, DialogActions, DialogTitle, IconButton, Typography} from "@mui/material";
 
 import React, {useState} from "react";
-import {LabelTextPair} from "../../LabelTextPair";
-
+import {Add, Remove} from "@mui/icons-material";
 
 export function ItemPrice(vlastny, item) {
 
-    const [amount, setAmount] = useState(getAmount)
+    const [amount, setAmount] = useState(item.amount)
     const [price, setPrice] = useState(item.price)
     const [open, setOpen] = useState(false)
 
@@ -14,17 +13,11 @@ export function ItemPrice(vlastny, item) {
         setOpen(false)
     }
 
-    function getAmount() {
-        return item.amount
-    }
-
-
     function updateAmount(add: boolean) {
         add ? item.amount++ : item.amount--
 
         setAmount(item.amount)
         setPrice(item.amount * item.price)
-
     }
 
     const onClickAdd = () => {
@@ -50,23 +43,44 @@ export function ItemPrice(vlastny, item) {
     return (
         <Box sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
 
-            <Box sx={{p: 2, display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-
-                <Button onClick={onClickRemove}>
-                    -
-                </Button>
-                {amount.toString()}
-                <Button onClick={onClickAdd}>
-                    +
-                </Button>
+            <Box sx={{p: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly',}}>
+                <Box>
+                    počet kusov:
+                </Box>
+                <Box sx={{
+                    p: 3, display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', padding: '0'
+                }}>
+                    <Box>
+                        <Button
+                            onClick={onClickRemove}>
+                            <Remove sx={{margin: '0'}}/>
+                        </Button>
+                    </Box>
+                    <Box sx={{minWidth: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <Typography minHeight={'30px'}>
+                            {amount.toString()}
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Button onClick={onClickAdd}> <Add/> </Button>
+                    </Box>
+                </Box>
 
             </Box>
-            <Box sx={{p: 2, display: 'flex', flexDirection: 'row', justifyContent: 'end'}}>
-                {amount > 1 ?
-                    (<LabelTextPair label="Cena" text={item.price.toString() + '€'}/>) : ''
-                }
 
-                <LabelTextPair label="Cena" text={price.toString() + '€'}/>
+            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'end', padding: '10px'}}>
+                <Typography minHeight={'25px'}>
+                    {(amount > 1) ? item.price.toString() + '€/ks' : ''}
+                </Typography>
+            </Box>
+            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'end', padding: '15px', paddingTop: '0'}}>
+
+                <Box sx={{display: 'flex', flexDirection: 'row', gap: 2}}>
+                    <Typography>Cena:</Typography>
+                    <Typography sx={{fontWeight: 'bold', minWidth: '50px'}}>
+                        {price.toString()} €
+                    </Typography>
+                </Box>
             </Box>
 
             <Dialog
@@ -82,12 +96,7 @@ export function ItemPrice(vlastny, item) {
                 </DialogTitle>
                 <DialogActions style={{justifyContent: 'space-between'}}>
                     <Button onClick={handleClose}>Neodobrať</Button>
-                    <Button
-                        onClick={removeItem}
-                        autoFocus
-                    >
-                        Odobrať
-                    </Button>
+                    <Button color='error' onClick={removeItem} autoFocus> Odobrať </Button>
                 </DialogActions>
             </Dialog>
         </Box>

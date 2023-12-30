@@ -1,27 +1,32 @@
 import {BottomNavigation, Box, Button, Paper, Typography} from "@mui/material";
-
 import React from "react";
-
 
 export function KosikFooter(price) {
 
     function NonEmptyKosikFooter() {
         return (
-            <Box sx={{width: '100%', border: '3px solid green'}}>
+            <Box sx={{width: '100%', padding: '10px 150px 10px 150px'}}>
 
                 <Box sx={{display: 'flex', justifyContent: 'end'}}>
-                    <Typography variant="h3" component="h3">
-                        cena celkom: {price} €
-                    </Typography>
+                    <Box sx={{padding: '10px'}}>
+                        <Typography variant="h5" component="h5">
+                            Cena celkom:
+                        </Typography>
+                    </Box>
+                    <Box sx={{padding: '10px'}}>
+                        <Typography variant="h5" component="h5" sx={{fontWeight: 'bold', minWidth: '50px'}}>
+                            {price.toString()} €
+                        </Typography>
+                    </Box>
                 </Box>
 
                 <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1}}>
 
-                    <Button variant="outlined" href={''}>
+                    <Button size='large' variant="outlined" href={''}>
                         Pokračovať v nákupe
                     </Button>
 
-                    <Button variant="outlined" href={''}>
+                    <Button size='large' variant="outlined" href={''}>
                         Pokračovať k platbe
                     </Button>
 
@@ -33,19 +38,18 @@ export function KosikFooter(price) {
 
     function EmptyKosikFooter() {
         return (
+            <Box sx={{width: '100%'}}>
+                <Box sx={{padding: '20px'}}>
 
-            <Box sx={{width: '100%', border: '3px solid green'}}>
-                <Box sx={{display: 'flex', justifyContent: 'end'}}>
-                    ...
                 </Box>
 
                 <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1}}>
 
-                    <Button variant="outlined" href='/objednat-vlastny-dizajn'>
+                    <Button size='large' variant="outlined" href='/objednat-vlastny-dizajn'>
                         Objednať vlastný dizajn
                     </Button>
 
-                    <Button variant="outlined" href='/ponuka'>
+                    <Button size='large' variant="outlined" href='/ponuka'>
                         Objednať z ponuky
                     </Button>
                 </Box>
@@ -65,7 +69,7 @@ export function KosikFooter(price) {
             display: 'flex',
             justifyContent: 'center'
         }} elevation={3}>
-            <BottomNavigation sx={{width: '80%',height: '100%', border: '1px solid red'}}>
+            <BottomNavigation sx={{width: '80%', height: '100%'}}>
                 {(price <= 0) ? EmptyKosikFooter() : NonEmptyKosikFooter()}
             </BottomNavigation>
         </Paper>

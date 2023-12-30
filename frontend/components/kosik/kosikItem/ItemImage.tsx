@@ -20,6 +20,7 @@ export function ItemImage(vlastny, item) {
     }
 
     return (
+        <Paper sx={{display: 'flex', justifyContent: 'center',  width: '100%'}}>
         <Box sx={{width: '50%'}}>
             <Card sx={{maxWidth: 500}}>
                 <CardMedia
@@ -30,5 +31,6 @@ export function ItemImage(vlastny, item) {
                 />
             </Card>
         </Box>
+        </Paper>
     )
 }

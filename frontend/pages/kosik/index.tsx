@@ -1,7 +1,5 @@
 import {Box, Typography} from '@mui/material'
-
 import React, {useState} from "react";
-
 import {KosikItems} from "../../components/kosik/KosikItems";
 import {KosikItem} from "../../components/kosik/kosikItem/KosikItem";
 import {KosikFooter} from "../../components/kosik/KosikFooter";
@@ -56,8 +54,8 @@ export default function Kosik() {
     function prazdnyKosikText() {
         if (price <= 0)
             return (
-                <Typography variant="h3" component="h3">
-                    Košík je prázdny
+                <Typography variant="h4" component="h4" sx={{padding: '50px'}}>
+                    Košík je prázdny.
                 </Typography>)
 
         return (<></>)
@@ -71,21 +69,33 @@ export default function Kosik() {
     }
 
     return (
-        <Box sx={{width: '100%', typography: 'body1'}} onClick={updatePrice}>
+        <Box sx={{
+            width: '100%',
+            typography: 'body1',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+        }} onClick={updatePrice}>
+            {/*<Box>*/}
+            {/*    <Typography variant="h2" component="h2">*/}
+            {/*        Košík*/}
+            {/*    </Typography>*/}
+            {/*</Box>*/}
 
-            <Typography variant="h2" component="h2">
-                Košík
-            </Typography>
+            <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                {prazdnyKosikText()}
+            </Box>
 
-            {prazdnyKosikText()}
+            <Box>
+                {Object.keys(KosikItems.ItemsZPonuky).map(name => (
+                    <Box display={displayItemBox(false, name)}>{KosikItem(false, KosikItems.ItemsZPonuky[name])}</Box>
+                ))}
 
-            {Object.keys(KosikItems.ItemsZPonuky).map(name => (
-                <Box display={displayItemBox(false, name)}>{KosikItem(false, KosikItems.ItemsZPonuky[name])}</Box>
-            ))}
-
-            {Object.keys(KosikItems.ItemsVlastnyDizajn).map(name => (
-                <Box display={displayItemBox(true, name)}>{KosikItem(true, KosikItems.ItemsVlastnyDizajn[name])}</Box>
-            ))}
+                {Object.keys(KosikItems.ItemsVlastnyDizajn).map(name => (
+                    <Box
+                        display={displayItemBox(true, name)}>{KosikItem(true, KosikItems.ItemsVlastnyDizajn[name])}</Box>
+                ))}
+            </Box>
 
             <Box sx={{
                 display: 'flex', justifyContent: 'center', minHeight: '10vh', padding: '0 0 100px 0'
