@@ -1,110 +1,112 @@
-import {Box, Typography} from '@mui/material'
-import React, {useState} from "react";
-import {KosikItems} from "../../components/kosik/KosikItems";
-import {KosikItem} from "../../components/kosik/kosikItem/KosikItem";
-import {KosikFooter} from "../../components/kosik/KosikFooter";
-
+import { Box, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import { KosikItems } from '../../components/kosik/KosikItems'
+import { KosikItem } from '../../components/kosik/kosikItem/KosikItem'
+import { KosikFooter } from '../../components/kosik/KosikFooter'
 
 export default function Kosik() {
+  const [price, setPrice] = useState(getPrice)
 
-    const [price, setPrice] = useState(getPrice)
+  function getPrice() {
+    let sum = 0
+    Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
+      sum += value.price * value.amount
+    })
 
+    Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
+      sum += value.price * value.amount
+    })
+    return sum
+  }
 
-    function getPrice() {
-        let sum = 0
-        Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
-            sum += value.price * value.amount
-        })
+  function updatePrice() {
+    setPrice(getPrice)
+  }
 
-        Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
-            sum += value.price * value.amount
-        })
-        return sum
-    }
+  // const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
 
-    function updatePrice() {
-        setPrice(getPrice)
-    }
+  // const limitationText = Object.entries(limitations)
+  //     .reduce((acc, [key, value]) => {
+  //         if (value) {
+  //             return `${acc} ${getTranslation(key)},`
+  //         }
+  //         return acc
+  //     }, '')
+  //     .slice(0, -1)
 
-    // const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
+  // let limText = (l) => {
+  //     Object.entries(l)
+  //         .reduce((acc, [key, value]) => {
+  //             if (value) {
+  //                 return `${acc} ${getTranslation(key)},`
+  //             }
+  //             return acc
+  //         }, '')
+  //         .slice(0, -1)
+  // }
 
+  function prazdnyKosikText() {
+    if (price <= 0)
+      return (
+        <Typography variant="h4" component="h4" sx={{ padding: '50px' }}>
+          Košík je prázdny.
+        </Typography>
+      )
 
-    // const limitationText = Object.entries(limitations)
-    //     .reduce((acc, [key, value]) => {
-    //         if (value) {
-    //             return `${acc} ${getTranslation(key)},`
-    //         }
-    //         return acc
-    //     }, '')
-    //     .slice(0, -1)
+    return <></>
+  }
 
+  // funkcia na skryvanie objektov v kosiku kde pocet je 0
+  function displayItemBox(vlastny, name) {
+    let zoz = vlastny ? KosikItems.ItemsVlastnyDizajn : KosikItems.ItemsZPonuky
+    return zoz[name].amount > 0 ? 'show' : 'none'
+  }
 
-    // let limText = (l) => {
-    //     Object.entries(l)
-    //         .reduce((acc, [key, value]) => {
-    //             if (value) {
-    //                 return `${acc} ${getTranslation(key)},`
-    //             }
-    //             return acc
-    //         }, '')
-    //         .slice(0, -1)
-    // }
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        // typography: 'body1',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+      onClick={updatePrice}
+    >
+      {/*<Box>*/}
+      {/*    <Typography variant="h2" component="h2">*/}
+      {/*        Košík*/}
+      {/*    </Typography>*/}
+      {/*</Box>*/}
 
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        {prazdnyKosikText()}
+      </Box>
 
-    function prazdnyKosikText() {
-        if (price <= 0)
-            return (
-                <Typography variant="h4" component="h4" sx={{padding: '50px'}}>
-                    Košík je prázdny.
-                </Typography>)
+      <Box>
+        {Object.keys(KosikItems.ItemsZPonuky).map((name) => (
+          <Box display={displayItemBox(false, name)}>
+            {KosikItem(false, KosikItems.ItemsZPonuky[name])}
+          </Box>
+        ))}
 
-        return (<></>)
-    }
+        {Object.keys(KosikItems.ItemsVlastnyDizajn).map((name) => (
+          <Box display={displayItemBox(true, name)}>
+            {KosikItem(true, KosikItems.ItemsVlastnyDizajn[name])}
+          </Box>
+        ))}
+      </Box>
 
-
-    // funkcia na skryvanie objektov v kosiku kde pocet je 0
-    function displayItemBox(vlastny, name) {
-        let zoz = vlastny ? KosikItems.ItemsVlastnyDizajn : KosikItems.ItemsZPonuky
-        return (zoz[name].amount > 0) ? 'show' : 'none'
-    }
-
-    return (
-        <Box sx={{
-            width: '100%',
-            // typography: 'body1',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center'
-        }} onClick={updatePrice}>
-            {/*<Box>*/}
-            {/*    <Typography variant="h2" component="h2">*/}
-            {/*        Košík*/}
-            {/*    </Typography>*/}
-            {/*</Box>*/}
-
-            <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                {prazdnyKosikText()}
-            </Box>
-
-            <Box>
-                {Object.keys(KosikItems.ItemsZPonuky).map(name => (
-                    <Box display={displayItemBox(false, name)}>{KosikItem(false, KosikItems.ItemsZPonuky[name])}</Box>
-                ))}
-
-                {Object.keys(KosikItems.ItemsVlastnyDizajn).map(name => (
-                    <Box
-                        display={displayItemBox(true, name)}>{KosikItem(true, KosikItems.ItemsVlastnyDizajn[name])}</Box>
-                ))}
-            </Box>
-
-            <Box sx={{
-                display: 'flex', justifyContent: 'center', minHeight: '10vh', padding: '0 0 100px 0'
-            }}>
-                {KosikFooter(price)}
-            </Box>
-
-        </Box>
-
-    )
-
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          minHeight: '10vh',
+          padding: '0 0 100px 0',
+        }}
+      >
+        {KosikFooter(price)}
+      </Box>
+    </Box>
+  )
 }
