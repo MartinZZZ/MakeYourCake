@@ -71,7 +71,7 @@ export default function Kosik() {
     return (
         <Box sx={{
             width: '100%',
-            typography: 'body1',
+            // typography: 'body1',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center'

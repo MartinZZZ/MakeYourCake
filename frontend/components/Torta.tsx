@@ -18,13 +18,8 @@ const frostingColor: Record<Frosting | 'none', string> = {
 
 
 export const Torta = (cream: string = null, frosting: string = null) => {
-    let selectedCream = useAppSelector((state) => state.cakeReducer.cream)
-    let selectedFrosting = useAppSelector((state) => state.cakeReducer.frosting)
-
-    if (cream.length >= 1 && frosting.length >= 1) {
-        selectedCream = cream
-        selectedFrosting = frosting
-    }
+    const selectedCream = (cream.length >= 1 && frosting.length >= 1) ? cream : useAppSelector((state) => state.cakeReducer.cream)
+    const selectedFrosting = (cream.length >= 1 && frosting.length >= 1) ? frosting : useAppSelector((state) => state.cakeReducer.frosting)
 
     return (
         <>
