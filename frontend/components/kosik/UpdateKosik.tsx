@@ -2,7 +2,7 @@ import {ItemToString, ItemVlastna, ItemZPonuky, KosikItems} from "./KosikItems";
 
 
 export const AddToKosik = (vlastny: boolean, rest, limitations = null, id = null, price: any = 50) => {
-    // todo - price by malo byt number ale bez :any dava error
+    // bez :any dava error
     if (vlastny) {
 
         let newItem = ItemVlastna({rest, limitations});
@@ -25,29 +25,3 @@ export const AddToKosik = (vlastny: boolean, rest, limitations = null, id = null
         KosikItems.ItemsZPonuky[name].amount++
     }
 }
-
-
-// export const UpdateKosik = (vlastny, item) => {
-//     if (item.amount <= 0) vlastny ? delete KosikItems.ItemsVlastnyDizajn[ItemToString(item.properties)] : delete KosikItems.ItemsZPonuky[ItemToString(item.properties)]
-// }
-
-// export const UpdateKosik = () => {
-//     let item
-//     Object.entries(KosikItems.ItemsVlastnyDizajn).map(([key, value]) => {
-//         if (value.amount <= 0) item = value
-//     })
-//
-//     if (item) {
-//         delete KosikItems.ItemsVlastnyDizajn[ItemToString(item.properties)]
-//         return
-//     }
-//
-//     Object.entries(KosikItems.ItemsZPonuky).map(([key, value]) => {
-//         if (value.amount <= 0) item = value
-//     })
-//
-//     if (item) {
-//         delete KosikItems.ItemsZPonuky[ItemToString(item.properties)]
-//     }
-//
-// }

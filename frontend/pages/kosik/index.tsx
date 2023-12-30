@@ -23,28 +23,6 @@ export default function Kosik() {
     setPrice(getPrice)
   }
 
-  // const {limitations, ...rest} = useAppSelector((state) => state.cakeReducer)
-
-  // const limitationText = Object.entries(limitations)
-  //     .reduce((acc, [key, value]) => {
-  //         if (value) {
-  //             return `${acc} ${getTranslation(key)},`
-  //         }
-  //         return acc
-  //     }, '')
-  //     .slice(0, -1)
-
-  // let limText = (l) => {
-  //     Object.entries(l)
-  //         .reduce((acc, [key, value]) => {
-  //             if (value) {
-  //                 return `${acc} ${getTranslation(key)},`
-  //             }
-  //             return acc
-  //         }, '')
-  //         .slice(0, -1)
-  // }
-
   function prazdnyKosikText() {
     if (price <= 0)
       return (
@@ -66,18 +44,12 @@ export default function Kosik() {
     <Box
       sx={{
         width: '100%',
-        // typography: 'body1',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
       }}
       onClick={updatePrice}
     >
-      {/*<Box>*/}
-      {/*    <Typography variant="h2" component="h2">*/}
-      {/*        Košík*/}
-      {/*    </Typography>*/}
-      {/*</Box>*/}
 
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         {prazdnyKosikText()}

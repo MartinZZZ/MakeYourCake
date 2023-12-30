@@ -156,7 +156,7 @@ const CakeDetail = () => {
                                     onChange={handleFlavourChange}
                                 >
                                     <FormControlLabel
-                                        value="choco"
+                                        value="chocolate"
                                         control={<Radio/>}
                                         label="čokoládová"
                                     />
