@@ -30,6 +30,7 @@ export const Torta = () => {
           mb: '-5vh',
           zIndex: 3,
           border: 'solid 1px black',
+          position: 'relative',
         }}
       />
       <Box
@@ -40,6 +41,7 @@ export const Torta = () => {
           border: 'solid 1px black',
           borderBottomColor: 'transparent',
           zIndex: 1,
+          position: 'relative',
         }}
       />
       <Box
@@ -50,6 +52,7 @@ export const Torta = () => {
           borderRadius: '50%',
           mt: '-5vh',
           border: 'solid 1px black',
+          position: 'relative',
         }}
       />
     </>
