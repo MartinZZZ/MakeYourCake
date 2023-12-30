@@ -23,14 +23,14 @@ type Props = {
 }
 
 export const Rez = ({ filling, dough }: Props) => {
-  const selectedFilling =
-    filling.length >= 1 && dough.length >= 1
-      ? (filling as Filling)
-      : useAppSelector((state) => state.cakeReducer.filling)
-  const selectedDough =
-    filling.length >= 1 && dough.length >= 1
-      ? (dough as Dough)
-      : useAppSelector((state) => state.cakeReducer.dough)
+  const check = filling !== undefined && dough !== undefined
+
+  const selectedFilling = check
+    ? (filling as Filling)
+    : useAppSelector((state) => state.cakeReducer.filling)
+  const selectedDough = check
+    ? (dough as Dough)
+    : useAppSelector((state) => state.cakeReducer.dough)
 
   return (
     <>

@@ -22,14 +22,14 @@ type Props = {
 }
 
 export const Torta = ({ cream, frosting }: Props) => {
-  const selectedCream =
-    cream.length >= 1 && frosting.length >= 1
-      ? (cream as Cream)
-      : useAppSelector((state) => state.cakeReducer.cream)
-  const selectedFrosting =
-    cream.length >= 1 && frosting.length >= 1
-      ? (frosting as Frosting)
-      : useAppSelector((state) => state.cakeReducer.frosting)
+  const check = cream !== undefined && frosting !== undefined
+
+  const selectedCream = check
+    ? (cream as Cream)
+    : useAppSelector((state) => state.cakeReducer.cream)
+  const selectedFrosting = check
+    ? (frosting as Frosting)
+    : useAppSelector((state) => state.cakeReducer.frosting)
 
   return (
     <>
