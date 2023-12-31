@@ -1,5 +1,8 @@
-import { useRouter } from 'next/router'
+import { RootState } from '../../redux/store'
+import React from 'react'
+import router from 'next/router'
 import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   Button,
@@ -17,64 +20,77 @@ import {
 } from '@mui/material'
 import Carousel from 'react-material-ui-carousel'
 import { ShoppingCartOutlined, ShoppingCart } from '@mui/icons-material'
-import React from 'react'
+import { setFinalPrice, setSize, setFlavour } from '../../redux/features/cakeMenuSlice'; 
+
+
+const Restrictions = ({restrictions}) => {
+    if (restrictions.length > 0) {
+        //TODO radio buttons
+        const restrictionOption = restrictions.map((r) => (
+                <Typography>
+                    {r}
+                {/* <RadioGroup
+                  name="controlled-radio-buttons-group"
+                  value={restrictions}
+                  onChange={() => {}}
+                >
+                  <FormControlLabel
+                    value={r}
+                    control={<Radio />}
+                    label={r}
+                  /> 
+                  </RadioGroup>*/}
+                </Typography>
+        ))
+        return (
+            <Typography variant="h6" my={1}>
+                Obmedzenia:
+                {restrictionOption}
+            </Typography>
+        )
+    }
+  } 
 
 const CakeDetail = () => {
-  const router = useRouter()
-  const { id, name, description, price: priceFromUrl } = router.query
+    useEffect(() => {
+        dispatch(setFinalPrice(price))
+        dispatch(setSize(12))
+        dispatch(setFlavour(''))
+    }, [])
 
-  const priceFromString = Array.isArray(priceFromUrl)
-    ? priceFromUrl[0]
-    : priceFromUrl
-  const initialPrice = parseFloat(priceFromString) || 0
-  const [additionalPrice, setAdditionalPrice] = useState(0)
-  const [totalPrice, setTotalPrice] = useState(initialPrice)
+  const dispatch = useDispatch();
 
-  // const selectedId = useAppSelector((state) => state.cakeInfoReducer.id)
-  // const selectedName = useAppSelector((state) => state.cakeInfoReducer.name)
-  // const selectedDescription = useAppSelector((state) => state.cakeInfoReducer.description)
-  // const selectedPrice = useAppSelector((state) => state.cakeInfoReducer.price)
-  // const dispatch = useDispatch<AppDispatch>()
-  useEffect(() => {
-    setTotalPrice(initialPrice + additionalPrice)
-  }, [additionalPrice, initialPrice])
-
-  const [size, setSize] = useState('12')
-  const [flavour, setFlavour] = useState('')
+  const { id, name, description, price, finalPrice, size, flavour, restrictions} = useSelector((state: RootState) => state.cakeMenu)
+  const [flavourError, setFlavourError] = useState(false)
+  const [open, setOpen] = React.useState(false)
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.persist()
     const newSize = (event.target as HTMLInputElement).value
-    setSize((prevSize) => {
-      setAdditionalPrice((prevAdditionalPrice) => {
-        if (newSize === '17') {
-          return 20
-        } else {
-          return 0
-        }
-      })
-      return newSize
-    })
-  }
-  const handleFlavourChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.persist()
-    const newFlavour = (event.target as HTMLInputElement).value
-    setFlavour(newFlavour)
+    dispatch(setSize(Number(newSize)))
+    if (newSize === '17') {
+        dispatch(setFinalPrice(price+20))
+    } else if (newSize === '25') {
+        dispatch(setFinalPrice(price+50))
+    } else {
+        dispatch(setFinalPrice(price))
+    }
   }
 
-  const [open, setOpen] = React.useState(false)
+  const handleFlavourChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newFlavour = (event.target as HTMLInputElement).value
+    dispatch(setFlavour(newFlavour))
+    setFlavourError(false)    
+  }
+
   const handleClickOpen = () => {
+    if (!flavour) {
+      setFlavourError(true)
+      return
+    }
     setOpen(true)
   }
   const handleClose = () => {
     setOpen(false)
-  }
-  const handleToCart = () => {
-    setOpen(false)
-    // router.push({
-    //     pathname: '/kosik',
-    //     query: {id: id, name: name, description: description, price: totalPrice}
-    // })
   }
 
   return (
@@ -124,7 +140,6 @@ const CakeDetail = () => {
               <FormControl>
                 <Typography variant="h6" my={1}>
                   Veľkosť
-                </Typography>
                 <RadioGroup
                   name="controlled-radio-buttons-group"
                   value={size}
@@ -138,9 +153,23 @@ const CakeDetail = () => {
                   <FormControlLabel
                     value="17"
                     control={<Radio />}
-                    label="17cm (12-18 porcií) +20€"
-                  />
+                    label={
+                        <Typography>
+                        17cm (12-18 porcií)  <i>+20€</i>
+                        </Typography>
+                    }
+                    />
+                  <FormControlLabel
+                    value="25"
+                    control={<Radio />}
+                    label={
+                        <Typography>
+                        25cm (25-30 porcií)  <i>+50€</i>
+                        </Typography>
+                    }
+                    />
                 </RadioGroup>
+                </Typography>
               </FormControl>
             </Box>
             <Box>
@@ -174,8 +203,14 @@ const CakeDetail = () => {
                     label="kávová"
                   />
                 </RadioGroup>
+                {flavourError && (
+                    <Typography variant="body2" color="error">
+                        Vyberte príchuť pred pridaním do košíka.
+                    </Typography>
+                )}
               </FormControl>
             </Box>
+            <Restrictions restrictions={restrictions}/>
             <Box
               display="flex"
               justifyContent="space-between"
@@ -183,7 +218,7 @@ const CakeDetail = () => {
               m={2}
             >
               <Typography variant="h6" my={2}>
-                Cena: {totalPrice}€
+                Cena: {finalPrice}€
               </Typography>
               <Button
                 variant="contained"
@@ -194,26 +229,29 @@ const CakeDetail = () => {
                 Kúpiť
               </Button>
               <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
               >
-                <DialogTitle id="alert-dialog-title">
-                  <Typography variant="h6" my={2}>
-                    Zvolená pololožka bola pridaná do košíka.
-                  </Typography>
-                </DialogTitle>
-                <DialogActions style={{ justifyContent: 'space-between' }}>
-                  <Button onClick={handleClose}>Pokračovať v nákupe</Button>
-                  <Button
-                    onClick={handleToCart}
-                    endIcon={<ShoppingCart />}
-                    autoFocus
-                  >
-                    Do košíka
-                  </Button>
-                </DialogActions>
+                  <DialogTitle id="alert-dialog-title">
+                      <Typography variant="h6" my={2}>
+                      Zvolená pololožka bola pridaná do košíka.
+                      </Typography>
+                  </DialogTitle>
+                  <DialogActions style={{ justifyContent: 'space-between' }}>
+                      <Button onClick={handleClose}>Pokračovať v nákupe</Button>
+                      <Button
+                        onClick={() => {
+                            handleClose();
+                            router.push('/kosik');
+                        }}
+                        endIcon={<ShoppingCart />}
+                        autoFocus
+                      >
+                      Do košíka
+                      </Button>
+                  </DialogActions>
               </Dialog>
             </Box>
           </Grid>

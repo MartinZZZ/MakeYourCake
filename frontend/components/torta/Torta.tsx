@@ -1,7 +1,5 @@
-// import { useState } from 'react';
-// import { AppDispatch, useAppSelector } from '../../redux/store';
-// import { useDispatch } from 'react-redux';
-// import { setDescription, setId, setName, setPrice } from '../../redux/features/cake-info';
+import { useDispatch } from 'react-redux';
+import { setId, setName, setDescription, setPrice, setRestrictions } from '../../redux/features/cakeMenuSlice';
 import { Box, Button, Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material'
 import { ShoppingCartOutlined } from '@mui/icons-material';
 import Link from 'next/link';
@@ -11,37 +9,32 @@ type Props = {
   name: string 
   description: string 
   price: number
+  restrictions: Array<string>
 }
 
-export const Torta = ({id, name, description, price}: Props) => {
-  // const selectedId = useAppSelector((state) => state.cakeInfoReducer.id)
-  // const selectedName = useAppSelector((state) => state.cakeInfoReducer.name)
-  // const selectedDescription = useAppSelector((state) => state.cakeInfoReducer.description)
-  // const selectedPrice = useAppSelector((state) => state.cakeInfoReducer.price)  
-  // const dispatch = useDispatch<AppDispatch>()
-  // const handleIdChange = (id: number, name: string, description: string, price: number) => {
-  //   dispatch(setId(id))
-  //   dispatch(setName(name))
-  //   dispatch(setDescription(description))
-  //   dispatch(setPrice(price))
-  // }
 
-  const BuyButton = ({id, name, description, price}: Props) => {
+export const Torta = ({id, name, description, price, restrictions}: Props) => {
+  const dispatch = useDispatch();
+
+  const handleBuyClick = () => {
+    dispatch(setId(id))
+    dispatch(setName(name))
+    dispatch(setDescription(description))
+    dispatch(setPrice(price))
+    dispatch(setRestrictions(restrictions))
+  }
+
+  const BuyButton = ({id, name, description, price, restrictions}: Props) => {
     return (
       <Link 
-        // href={`/ponuka/${id}`}
-        href={{
-          pathname: '/ponuka/[id]',
-          query: {id: id, name: name, description: description, price: price}
-        }}
-        passHref
-        // onClick={() => handleIdChange(id, name, description, price)}
+        href={`/ponuka/${id}`}
       >
         <Button
-        variant="contained" 
-        endIcon={<ShoppingCartOutlined/>}
-      > Kúpiť
-      </Button>
+          variant="contained" 
+          endIcon={<ShoppingCartOutlined/>}
+          onClick={handleBuyClick}
+        > Kúpiť
+        </Button>
       </Link>
     )
   }
@@ -49,14 +42,9 @@ export const Torta = ({id, name, description, price}: Props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Link 
-        // href={`/ponuka/${id}`}
-        href={{
-          pathname: '/ponuka/[id]',
-          query: {id: id, name: name, description: description, price: price}
-        }}
+        href={`/ponuka/${id}`}
         passHref 
         style={{textDecoration: 'none', color: 'black'}}
-        // onClick={() =>  handleIdChange(id, name, description, price)}
       >
         <CardActionArea>
           <CardMedia
@@ -64,6 +52,7 @@ export const Torta = ({id, name, description, price}: Props) => {
             height="400"
             image={`/static/images/cakes/${id}/0.png`}
             alt={`image for cake ${name}`}
+            onClick={handleBuyClick}
           />
           <CardContent>
             <Typography gutterBottom variant="h5">
@@ -84,7 +73,7 @@ export const Torta = ({id, name, description, price}: Props) => {
         <Typography m={1} variant='h6'>
           od {price}€
         </Typography>
-        <BuyButton id={id} name={name} description={description} price={price}/>
+        <BuyButton id={id} name={name} description={description} price={price} restrictions={restrictions}/>
       </Box>
     </Card>
   )
