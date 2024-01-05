@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import { useAppSelector } from '../redux/store'
 import { Dough, Filling } from '../types/cake'
+import { cakeSlice, setFilling } from '../redux/features/cake-slice'
 
 const fillingColor: Record<Filling | 'none', string> = {
   chocolate: '#422503',
@@ -16,9 +17,21 @@ const doughColor: Record<Dough | 'none', string> = {
   none: '#C3C3C0',
 }
 
-export const Rez = () => {
-  const selectedFilling = useAppSelector((state) => state.cakeReducer.filling)
-  const selectedDough = useAppSelector((state) => state.cakeReducer.dough)
+type Props = {
+  filling?: Filling
+  dough?: Dough
+}
+
+export const Rez = ({ filling, dough }: Props) => {
+  const check = filling !== undefined && dough !== undefined
+
+  const selectedFilling = check
+    ? (filling as Filling)
+    : useAppSelector((state) => state.cakeReducer.filling)
+  const selectedDough = check
+    ? (dough as Dough)
+    : useAppSelector((state) => state.cakeReducer.dough)
+
   return (
     <>
       <Box

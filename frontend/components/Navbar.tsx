@@ -61,11 +61,11 @@ export const Navbar = ({ currentTab }: Props) => {
           />
         ))}
       </Box>
-      {/* <NavbarItem
+       <NavbarItem
         tab="kosik"
         label="Košík"
         isCurrentTab={currentTab === 'kosik'}
-      /> */}
+      />
       <Box />
     </Box>
   )

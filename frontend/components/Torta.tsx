@@ -16,9 +16,21 @@ const frostingColor: Record<Frosting | 'none', string> = {
   none: '#C3C3C0',
 }
 
-export const Torta = () => {
-  const selectedCream = useAppSelector((state) => state.cakeReducer.cream)
-  const selectedFrosting = useAppSelector((state) => state.cakeReducer.frosting)
+type Props = {
+  cream?: Cream
+  frosting?: Frosting
+}
+
+export const Torta = ({ cream, frosting }: Props) => {
+  const check = cream !== undefined && frosting !== undefined
+
+  const selectedCream = check
+    ? (cream as Cream)
+    : useAppSelector((state) => state.cakeReducer.cream)
+  const selectedFrosting = check
+    ? (frosting as Frosting)
+    : useAppSelector((state) => state.cakeReducer.frosting)
+
   return (
     <>
       <Box
