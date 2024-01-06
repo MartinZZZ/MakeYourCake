@@ -15,7 +15,7 @@ export const App = () => {
                 Vitajte na Make Your Cake!
             </Typography>
 
-            <Container>
+            <Container style={{backgroundColor:'lightgoldenrodyellow'}}>
                 <Typography display="block" align='center' maxWidth={'50%'} padding='20px 50px 150px 50px' style={{backgroundColor:'lightgoldenrodyellow', fontSize:'20px'}}>
                     <em style={{fontSize:'20px', color:'darkgreen'}}>{<Favorite/>}  Objednajte si svoju vysnívanú tortu online.</em ><br/><br/>
                     <a href='/objednat-vlastny-dizajn' style={{color:'mediumvioletred'}}>Vyskladajte si vlastnú tortu</a> podľa Vašich predstáv, od príchute a plnky až po sladkú polevu s dekoráciami.
@@ -26,46 +26,44 @@ export const App = () => {
                     Všetky torty ponúkame aj <u>bezlepkové, bezlaktózové a vegánske.</u>
                 </Typography>
 
-                <Paper sx={{display: 'flex', flexDirection: 'row',  width: '100%', justifyContent: 'center', backgroundColor:'lightgoldenrodyellow', maxWidth: '50%'}}>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '100%',
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
 
-                    }}>
-                        <Card sx={{maxWidth: 500, margin: '10px'}}>
-                            <Carousel
-                                autoPlay={true}
-                                indicators={true}
-                                indicatorContainerProps={{
-                                    style: {
-                                        position: 'absolute',
-                                        bottom: 16,
-                                        textAlign: 'center',
-                                    },
-                                }}
-                                navButtonsAlwaysVisible={true}
-                                navButtonsProps={{
-                                    style: {
-                                        backgroundColor: 'transparent',
-                                        color: 'black',
-                                        borderRadius: 0,
-                                    },
-                                }}
-                            >
-                                {[1, 2, 3, 4].map((index) => (
-                                    <CardMedia
-                                        key={index}
-                                        component="img"
-                                        height="400"
-                                        image={`/static/images/cakes/${index}/0.png`}
-                                        alt={`Cake`}
-                                    />
-                                ))}
-                            </Carousel>
-                        </Card>
-                    </Box>
-                </Paper>
+                }}>
+                    <Card sx={{maxWidth: 400}}>
+                        <Carousel
+                            autoPlay={true}
+                            indicators={true}
+                            indicatorContainerProps={{
+                                style: {
+                                    position: 'absolute',
+                                    bottom: 16,
+                                    textAlign: 'center',
+                                },
+                            }}
+                            navButtonsAlwaysVisible={true}
+                            navButtonsProps={{
+                                style: {
+                                    backgroundColor: 'transparent',
+                                    color: 'black',
+                                    borderRadius: 0,
+                                },
+                            }}
+                        >
+                            {[0, 1, 2, 3, 4, 5, 6].map((index) => (
+                                <CardMedia
+                                    key={index}
+                                    component="img"
+                                    height="400"
+                                    image={`/static/images/cakes/${index}/0.png`}
+                                    alt={`Cake`}
+                                />
+                            ))}
+                        </Carousel>
+                    </Card>
+                </Box>
             </Container>
         </>
     )
