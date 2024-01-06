@@ -80,8 +80,10 @@ const CakeDetail = () => {
     }
 
     return (
-        <Box my={5}>
-            <Typography variant="h4">{name}</Typography>
+        <Box my={5} sx={{backgroundColor: 'lightgoldenrodyellow', padding: '15px'}}>
+            <Typography variant="h4">
+                {name}
+            </Typography>
 
             <Box mt={3}>
                 <Grid container spacing={1}>
@@ -191,6 +193,9 @@ const CakeDetail = () => {
                                 variant="contained"
                                 endIcon={<ShoppingCartOutlined/>}
                                 onClick={handleClickOpen}
+                                sx={{backgroundColor: 'deeppink', '&:hover': {
+                                        backgroundColor: 'deeppink'}
+                                }}
                             >
                                 {' '}
                                 Kúpiť
