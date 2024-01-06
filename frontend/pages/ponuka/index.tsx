@@ -1,26 +1,93 @@
-import * as React from 'react';
-import { Autocomplete, Box, Button, Card, CardActionArea, CardContent, CardMedia, Chip, Grid, TextField, Typography, Stack } from '@mui/material'
-import { Torta } from "../../components/torta/Torta"
+import * as React from "react";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Chip,
+  Grid,
+  TextField,
+  Typography,
+  Stack,
+} from "@mui/material";
+import { Torta } from "../../components/torta/Torta";
 
 const category = [
-  { title: 'Narodeninová'},
-  { title: 'Svadobná'},
-  { title: 'Iné'}
+  { title: "Narodeninová" },
+  { title: "Svadobná" },
+  { title: "Iné" },
 ];
-const restriction  = [
-  { title: 'Bez laktózy'},
-  { title: 'Bez lepku'},
-  { title: 'Vegánska'}
+const restriction = [
+  { title: "lactose-free", value: "Bez laktózy" },
+  { title: "gluten-free", value: "Bez lepku" },
+  { title: "vegie", value: "Vegánska" },
 ];
 
 const cakes = [
-  { id: 0, name: 'Makrónková torta', description: 'Torta s lahodnými makrónkami, čokoládovou polevou a maslovým krémom.', price: 40, category:'Iné',  restriction:[]  },
-  { id: 1, name: 'Čokoládová torta', description: 'Čokoládová torta s bohatou chuťou, dozdobená kúskami čokolády a jedlým zlatom.', price: 35, category:'Narodeninová',  restriction:['Bez lepku'] },
-  { id: 2, name: 'Narodeninová torta', description: 'Minimalistická narodeninová torta pre dvoch s farebnou posýpkou.', price: 25, category:'Narodeninová',  restriction:['Bez laktózy', 'Vegánska']  },
-  { id: 3, name: 'Torta Jednorožec', description: 'Torta Jednorožec zdobená farebným krémom a dominantným zlatým rohom.', price: 55, category:'Iné',  restriction:['Bez laktózy', 'Bez lepku', 'Vegánska']  },
-  { id: 4, name: 'Dinosaurusová torta', description: 'Torta Jednorožec zdobená farebným krémom a dominantným zlatým rohom.', price: 55, category:'Iné',  restriction:['Bez laktózy', 'Bez lepku', 'Vegánska'] },
-  { id: 5, name: 'Svadobná', description: '...', price: 0, category:'Svadobná', restriction:[] },
-  { id: 6, name: 'Svadobná', description: '...', price: 0, category:'Svadobná', restriction:['Vegánska']  },
+  {
+    id: 0,
+    name: "Makrónková torta",
+    description:
+      "Torta s lahodnými makrónkami, čokoládovou polevou a maslovým krémom.",
+    price: 40,
+    category: "Iné",
+    restriction: [],
+  },
+  {
+    id: 1,
+    name: "Čokoládová torta",
+    description:
+      "Čokoládová torta s bohatou chuťou, dozdobená kúskami čokolády a jedlým zlatom.",
+    price: 35,
+    category: "Narodeninová",
+    restriction: ["gluten-free"],
+  },
+  {
+    id: 2,
+    name: "Narodeninová torta",
+    description:
+      "Minimalistická narodeninová torta pre dvoch s farebnou posýpkou.",
+    price: 25,
+    category: "Narodeninová",
+    restriction: ["lactose-free", "vegie"],
+  },
+  {
+    id: 3,
+    name: "Torta Jednorožec",
+    description:
+      "Torta Jednorožec zdobená farebným krémom a dominantným zlatým rohom.",
+    price: 55,
+    category: "Iné",
+    restriction: ["lactose-free", "gluten-free", "vegie"],
+  },
+  {
+    id: 4,
+    name: "Dinosaurusová torta",
+    description:
+      "Torta Jednorožec zdobená farebným krémom a dominantným zlatým rohom.",
+    price: 55,
+    category: "Iné",
+    restriction: ["lactose-free", "gluten-free", "vegie"],
+  },
+  {
+    id: 5,
+    name: "Svadobná",
+    description: "Svadobná torta s ružovými kvetmi dozdobená jedlým zlatom.",
+    price: 90,
+    category: "Svadobná",
+    restriction: ["lactose-free"],
+  },
+  {
+    id: 6,
+    name: "Svadobná",
+    description: "Svadobná torta s jednoduchým dizajnom. Zlatý detail a biele kvety na torte sa budú určite hodiť aj k Vašej svadobnej výzdobe.",
+    price: 90,
+    category: "Svadobná",
+    restriction: ["vegie"],
+  },
 ];
 
 export default function Ponuka() {
@@ -36,13 +103,23 @@ export default function Ponuka() {
   };
 
   React.useEffect(() => {
-    var updatedCakes = selectedCategories.length === 0
-      ? cakes
-      : cakes.filter(cake => selectedCategories.map(category => category.title).includes(cake.category))
-      
-    updatedCakes = selectedRestrictions.length === 0
-      ? updatedCakes
-      : updatedCakes.filter(cake => selectedRestrictions.some(restriction => cake.restriction.includes(restriction.title)))
+    var updatedCakes =
+      selectedCategories.length === 0
+        ? cakes
+        : cakes.filter((cake) =>
+            selectedCategories
+              .map((category) => category.title)
+              .includes(cake.category)
+          );
+
+    updatedCakes =
+      selectedRestrictions.length === 0
+        ? updatedCakes
+        : updatedCakes.filter((cake) =>
+            selectedRestrictions.some((restriction) =>
+              cake.restriction.includes(restriction.title)
+            )
+          );
 
     setFilteredCakes(updatedCakes);
   }, [selectedCategories, selectedRestrictions]);
@@ -52,7 +129,13 @@ export default function Ponuka() {
       <Grid container justifyContent="center" borderBottom={1}>
         <Box mx={1}>
           <Typography display="inline-block">Kategória: </Typography>
-          <Stack spacing={3} sx={{ width: 380 }} my={2} mx={1} display="inline-block">
+          <Stack
+            spacing={3}
+            sx={{ width: 380 }}
+            my={2}
+            mx={1}
+            display="inline-block"
+          >
             <Autocomplete
               multiple
               id="tags-outlined"
@@ -67,19 +150,25 @@ export default function Ponuka() {
                     label="filtuj kategóriu torty"
                     placeholder="kategória torty"
                   />
-                </Typography> 
+                </Typography>
               )}
             />
           </Stack>
         </Box>
         <Box mx={1}>
           <Typography display="inline-block">Obmedzenia: </Typography>
-          <Stack spacing={3} sx={{ width: 380 }} my={2} mx={1} display="inline-block">
+          <Stack
+            spacing={3}
+            sx={{ width: 380 }}
+            my={2}
+            mx={1}
+            display="inline-block"
+          >
             <Autocomplete
               multiple
               id="tags-outlined"
               options={restriction}
-              getOptionLabel={(option) => option.title}
+              getOptionLabel={(option) => option.value}
               filterSelectedOptions
               onChange={handleRestrictionChange}
               renderInput={(params) => (
@@ -89,19 +178,29 @@ export default function Ponuka() {
                     label="filtuj obmedzenia torty"
                     placeholder="obmedzenia"
                   />
-                </Typography> 
+                </Typography>
               )}
             />
           </Stack>
         </Box>
       </Grid>
-      <Grid container spacing={{ xs: 3, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-      {filteredCakes.map((cake) => (
-        <Grid marginTop={3} item xs={4} sm={4} md={4} key={cake.id}>
-          <Torta id={cake.id} name={cake.name} description={cake.description} price={cake.price} restrictions={cake.restriction}/>
-        </Grid>
-      ))}
+      <Grid
+        container
+        spacing={{ xs: 3, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+      >
+        {filteredCakes.map((cake) => (
+          <Grid marginTop={3} item xs={4} sm={4} md={4} key={cake.id}>
+            <Torta
+              id={cake.id}
+              name={cake.name}
+              description={cake.description}
+              price={cake.price}
+              restrictions={cake.restriction}
+            />
+          </Grid>
+        ))}
       </Grid>
     </Box>
-  )
+  );
 }

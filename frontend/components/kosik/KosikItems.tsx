@@ -9,6 +9,7 @@ type Y = {
   price: number
   properties: ItemZPonuky
   id: string
+  restrictions: Array<string>
 }
 
 type ItemVlastna = {
