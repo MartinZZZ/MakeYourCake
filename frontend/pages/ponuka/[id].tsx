@@ -1,26 +1,29 @@
+
 import { RootState } from '../../redux/store'
 import React from 'react'
 import router from 'next/router'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import {useRouter} from 'next/router'
 import {
-  Box,
-  Button,
-  Card,
-  CardMedia,
-  Dialog,
-  DialogActions,
-  DialogTitle,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  Typography,
+    Box,
+    Button,
+    Card,
+    CardMedia,
+    Dialog,
+    DialogActions,
+    DialogTitle,
+    FormControl,
+    FormControlLabel,
+    Grid,
+    Radio,
+    RadioGroup,
+    Typography,
 } from '@mui/material'
 import Carousel from 'react-material-ui-carousel'
 import { ShoppingCartOutlined, ShoppingCart } from '@mui/icons-material'
 import { setFinalPrice, setSize, setFlavour } from '../../redux/features/cakeMenuSlice'; 
+import {AddToKosik} from "../../components/kosik/UpdateKosik";
 
 
 const Restrictions = ({restrictions}) => {
@@ -94,8 +97,8 @@ const CakeDetail = () => {
   }
 
   return (
-    <Box my={5}>
-      <Typography variant="h4">{name}</Typography>
+      <Box my={5}>
+          <Typography variant="h4">{name}</Typography>
 
       <Box mt={3}>
         <Grid container spacing={1}>
@@ -183,7 +186,7 @@ const CakeDetail = () => {
                   onChange={handleFlavourChange}
                 >
                   <FormControlLabel
-                    value="choco"
+                    value="chocolate"
                     control={<Radio />}
                     label="čokoládová"
                   />
