@@ -125,7 +125,7 @@ export default function Ponuka() {
   }, [selectedCategories, selectedRestrictions]);
 
   return (
-    <Box marginBottom={3}>
+    <Box marginBottom={3} sx={{backgroundColor: 'lightgoldenrodyellow'}}>
       <Grid container justifyContent="center" borderBottom={1}>
         <Box mx={1}>
           <Typography display="inline-block">Kategória: </Typography>

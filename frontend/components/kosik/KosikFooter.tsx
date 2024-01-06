@@ -7,7 +7,7 @@ export function KosikFooter(price) {
 
     function NonEmptyKosikFooter() {
         return (
-            <Box sx={{width: '100%', padding: '10px 150px 10px 150px'}}>
+            <Box sx={{width: '100%', padding: '10px 150px 10px 150px', backgroundColor: 'lightgoldenrodyellow'}}>
 
                 <Box sx={{display: 'flex', justifyContent: 'end'}}>
                     <Box sx={{padding: '10px'}}>
@@ -24,12 +24,14 @@ export function KosikFooter(price) {
 
                 <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1}}>
 
-                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/'})}>
-                        Pokračovať v nákupe
+                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/'})}
+                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
+                        <b>Pokračovať v nákupe</b>
                     </Button>
 
-                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/platba'})}>
-                        Pokračovať k platbe
+                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/platba'})}
+                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
+                        <b>Pokračovať k platbe</b>
                     </Button>
 
                 </Box>
@@ -40,19 +42,21 @@ export function KosikFooter(price) {
 
     function EmptyKosikFooter() {
         return (
-            <Box sx={{width: '100%'}}>
+            <Box sx={{width: '100%', backgroundColor: 'lightgoldenrodyellow'}}>
                 <Box sx={{padding: '20px'}}>
 
                 </Box>
 
-                <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1}}>
+                <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1, backgroundColor: 'lightgoldenrodyellow'}}>
 
-                    <Button size='large' variant="outlined" href='/objednat-vlastny-dizajn'>
-                        Objednať vlastný dizajn
+                    <Button size='large' variant="outlined" href='/objednat-vlastny-dizajn'
+                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
+                        <Typography>Objednať vlastný dizajn</Typography>
                     </Button>
 
-                    <Button size='large' variant="outlined" href='/ponuka'>
-                        Objednať z ponuky
+                    <Button size='large' variant="outlined" href='/ponuka'
+                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
+                        <Typography>Objednať z ponuky</Typography>
                     </Button>
                 </Box>
             </Box>
@@ -69,7 +73,8 @@ export function KosikFooter(price) {
             height: '150px',
             zIndex: 999,
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            backgroundColor: 'lightgoldenrodyellow'
         }} elevation={3}>
             <BottomNavigation sx={{width: '80%', height: '100%'}}>
                 {(price <= 0) ? EmptyKosikFooter() : NonEmptyKosikFooter()}

@@ -1,5 +1,6 @@
-import { Box, Typography } from '@mui/material'
+import {Box, Button, Typography} from '@mui/material'
 import { useRouter } from 'next/navigation'
+import React from "react";
 
 type Props = {
   currentTab: string
@@ -20,53 +21,54 @@ type NavbarItemProps = {
 const NavbarItem = ({ tab, label, isCurrentTab }: NavbarItemProps) => {
   const router = useRouter()
   return (
-    <Box
-      key={tab}
-      onClick={() => {
-        router.push(`/${tab}`)
-      }}
-      sx={{
-        display: 'inline-block',
-        marginRight: 2,
-        padding: 1,
-        backgroundColor: isCurrentTab ? 'primary.main' : 'transparent',
-        color: isCurrentTab ? 'white' : 'black',
-        borderRadius: 1,
-        '&:hover': {
-          backgroundColor: 'primary.main',
-          color: 'white',
-          cursor: 'pointer',
-        },
-      }}
-    >
-      <Typography>{label}</Typography>
-    </Box>
+      <Box
+          key={tab}
+          onClick={() => {
+            router.push(`/${tab}`)
+          }}
+          sx={{
+            display: 'inline-block',
+            marginLeft: '5px',
+            marginRight: '5px',
+            padding: 1,
+            backgroundColor: isCurrentTab ? 'deeppink' : 'transparent',
+            color: isCurrentTab ? 'white' : 'black',
+            borderRadius: 1,
+            '&:hover': {
+              backgroundColor: 'deeppink',
+              color: 'white',
+              cursor: 'pointer',
+            },
+          }}
+      >
+        <Typography>{label}</Typography>
+      </Box>
   )
 }
 export const Navbar = ({ currentTab }: Props) => {
   return (
-    <Box
-      flexDirection="row"
-      justifyContent="space-between"
-      display="flex"
-      width="100%"
-    >
-      <Box maxWidth="70%">
-        {Object.entries(TABS).map(([tab, label]) => (
-          <NavbarItem
-            key={tab}
-            tab={tab}
-            label={label}
-            isCurrentTab={tab === currentTab}
-          />
-        ))}
+      <Box
+          py={1}
+          flexDirection="row"
+          justifyContent="space-between"
+          display="flex"
+          width="100%"
+      >
+        <Box maxWidth="70%">
+          {Object.entries(TABS).map(([tab, label]) => (
+              <NavbarItem
+                  key={tab}
+                  tab={tab}
+                  label={label}
+                  isCurrentTab={tab === currentTab}
+              />
+          ))}
+        </Box>
+        <NavbarItem
+            tab="kosik"
+            label="Košík"
+            isCurrentTab={currentTab === 'kosik'}
+        />
       </Box>
-       <NavbarItem
-        tab="kosik"
-        label="Košík"
-        isCurrentTab={currentTab === 'kosik'}
-      />
-      <Box />
-    </Box>
   )
 }
