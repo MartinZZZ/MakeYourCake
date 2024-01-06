@@ -48,6 +48,7 @@ const NavbarItem = ({ tab, label, isCurrentTab }: NavbarItemProps) => {
 export const Navbar = ({ currentTab }: Props) => {
   return (
       <Box
+          py={1}
           flexDirection="row"
           justifyContent="space-between"
           display="flex"

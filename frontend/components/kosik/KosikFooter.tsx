@@ -51,12 +51,12 @@ export function KosikFooter(price) {
 
                     <Button size='large' variant="outlined" href='/objednat-vlastny-dizajn'
                             sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
-                        <b>Objednať vlastný dizajn</b>
+                        <Typography>Objednať vlastný dizajn</Typography>
                     </Button>
 
                     <Button size='large' variant="outlined" href='/ponuka'
                             sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
-                        <b>Objednať z ponuky</b>
+                        <Typography>Objednať z ponuky</Typography>
                     </Button>
                 </Box>
             </Box>
