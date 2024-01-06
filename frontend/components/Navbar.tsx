@@ -1,7 +1,5 @@
 import {Box, Button, Typography} from '@mui/material'
 import { useRouter } from 'next/navigation'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import React from "react";
 
 type Props = {

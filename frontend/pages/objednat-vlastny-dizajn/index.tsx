@@ -25,8 +25,7 @@ export default function NovyDizajn() {
                 <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
                     <TabList onChange={handleChange} aria-label="tabs" centered>
                         {Object.keys(TABS).map((label, index) => (
-                            <Tab key={label} label={label} value={index.toString()} sx={{color: 'darkgreen', fontWeight: 'bold',
-                                '&:selected':{color:'deeppink'}}}/>
+                            <Tab key={label} label={label} value={index.toString()} sx={{color: 'black'}}/>
                         ))}
                     </TabList>
                 </Box>

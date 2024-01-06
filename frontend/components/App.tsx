@@ -1,4 +1,4 @@
-import {Box, Card, CardMedia, Paper, Typography} from "@mui/material";
+import {Card, CardMedia, Paper, Typography} from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import React from "react";
 import {Favorite} from '@mui/icons-material'
@@ -11,13 +11,13 @@ const Container = styled.div`
 export const App = () => {
     return (
         <>
-            <Typography variant="h3"  padding='40px' align='center' style={{backgroundColor:'lightgoldenrodyellow', color:'darkgreen'}}>
+            <Typography variant="h3"  padding='40px' align='center' style={{backgroundColor:'lightgoldenrodyellow', color:'black'}}>
                 Vitajte na Make Your Cake!
             </Typography>
 
             <Container>
-                <Typography display="block" align='center' maxWidth={'50%'} padding='20px 50px 150px 50px' style={{backgroundColor:'lightgoldenrodyellow', fontSize:'20px'}}>
-                    <em style={{fontSize:'20px', color:'darkgreen'}}>{<Favorite/>}  Objednajte si svoju vysnívanú tortu online.</em ><br/><br/>
+                <Typography align='center' width={'50%'} padding='20px 50px 150px 50px' style={{backgroundColor:'lightgoldenrodyellow', fontSize:'20px', flex: '1'}}>
+                    <em style={{fontSize:'20px', color:'black'}}>{<Favorite/>}  Objednajte si svoju vysnívanú tortu online.</em ><br/><br/>
                     <a href='/objednat-vlastny-dizajn' style={{color:'mediumvioletred'}}>Vyskladajte si vlastnú tortu</a> podľa Vašich predstáv, od príchute a plnky až po sladkú polevu s dekoráciami.
                     Prejdite všetkými krokmi a vytvorte nádhernú tortu na mieru rýchlo a jednoducho!
                     <br/><br/>
@@ -26,13 +26,7 @@ export const App = () => {
                     Všetky torty ponúkame aj <u>bezlepkové, bezlaktózové a vegánske.</u>
                 </Typography>
 
-                <Paper sx={{display: 'flex', flexDirection: 'row',  width: '100%', justifyContent: 'center', backgroundColor:'lightgoldenrodyellow', maxWidth: '50%'}}>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '100%',
-
-                    }}>
+                <Paper sx={{justifyContent: 'center', backgroundColor:'lightgoldenrodyellow', width: '50%', flex: '1'}}>
                         <Card sx={{maxWidth: 500, margin: '10px'}}>
                             <Carousel
                                 autoPlay={true}
@@ -64,7 +58,6 @@ export const App = () => {
                                 ))}
                             </Carousel>
                         </Card>
-                    </Box>
                 </Paper>
             </Container>
         </>

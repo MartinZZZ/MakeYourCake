@@ -28,7 +28,7 @@ export default function Kosik() {
         if (price <= 0)
             return (
 
-                <Typography variant="h3" component="h4" sx={{ padding: '50px', color:'darkgreen'}}>
+                <Typography variant="h3" component="h4" sx={{ padding: '50px', color:'black'}}>
                     {<ShoppingCartOutlined/>} Košík je prázdny.
                 </Typography>
             )
