@@ -1,38 +1,46 @@
-import { Card, Grid, Paper } from "@mui/material";
-import React from "react";
-import { ItemImage } from "./ItemImage";
-import { ItemDetail } from "./ItemDetail";
-import { ItemPrice } from "./ItemPrice";
+import { Card, Grid, Paper } from '@mui/material'
+import React from 'react'
+import { ItemImage } from './ItemImage'
+import { ItemDetail } from './ItemDetail'
+import { ItemPrice } from './ItemPrice'
 
 export function KosikItem(vlastny, item) {
   return (
     <Card
       sx={{
-        topography: "body1",
-        margin: "5px",
+        topography: 'body1',
+        margin: '5px',
       }}
     >
       <Grid
         container
         spacing={3}
-        sx={{ minHeight: "250px", maxHeight: "250px" }}
+        sx={{ minHeight: '250px', maxHeight: '250px' }}
       >
         <Grid
           item
-          xs={4}
+          xs={vlastny ? 7 : 4}
           sx={{
-            minHeight: "250px",
-            maxHeight: "250px",
-            display: "flex",
-            justifyContent: "center",
+            minHeight: '250px',
+            maxHeight: '250px',
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
-          {ItemImage(vlastny, item)}
+          <ItemImage vlastny={vlastny} item={item} />
         </Grid>
-        <Grid item xs={4} sx={{ minHeight: "250px", maxHeight: "250px" }}>
+        <Grid
+          item
+          xs={vlastny ? 2 : 4}
+          sx={{ minHeight: '250px', maxHeight: '250px' }}
+        >
           {ItemDetail(vlastny, item)}
         </Grid>
-        <Grid item xs={4} sx={{ minHeight: "250px", maxHeight: "250px" }}>
+        <Grid
+          item
+          xs={vlastny ? 2 : 4}
+          sx={{ minHeight: '250px', maxHeight: '250px' }}
+        >
           {ItemPrice(vlastny, item)}
         </Grid>
       </Grid>

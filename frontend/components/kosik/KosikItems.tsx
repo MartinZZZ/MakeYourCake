@@ -60,9 +60,11 @@ export const ItemZPonuky = (props) => {
 export const ItemToString = (item: {}) => {
   let str = ''
   {
-    Object.entries(item).map(([key, value]) => {
-      str += key.toString() + value.toString()
-    })
+    Object.entries(item)
+      .sort()
+      .map(([key, value]) => {
+        str += key.toString() + value.toString()
+      })
     return str
   }
 }

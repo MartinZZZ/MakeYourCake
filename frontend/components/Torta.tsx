@@ -46,6 +46,7 @@ export const Torta = ({ cream, frosting }: Props) => {
           mb: '-5vh',
           zIndex: 3,
           border: 'solid 1px black',
+          position: 'relative',
         }}
       />
       <Box
@@ -56,6 +57,7 @@ export const Torta = ({ cream, frosting }: Props) => {
           border: 'solid 1px black',
           borderBottomColor: 'transparent',
           zIndex: 1,
+          position: 'relative',
         }}
       />
       <Box
@@ -66,6 +68,7 @@ export const Torta = ({ cream, frosting }: Props) => {
           borderRadius: '50%',
           mt: '-5vh',
           border: 'solid 1px black',
+          position: 'relative',
         }}
       />
     </>

@@ -8,7 +8,7 @@ import {
   Frosting,
 } from '../../types/cake'
 
-type InitialStateType = {
+export type CakeType = {
   shape?: CakeShape
   portions?: number
   filling?: Filling
@@ -18,7 +18,7 @@ type InitialStateType = {
   limitations: Record<Limitation, boolean>
 }
 
-const initialState: InitialStateType = {
+const initialState: CakeType = {
   shape: undefined,
   portions: undefined,
   filling: undefined,

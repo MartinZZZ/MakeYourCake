@@ -3,30 +3,41 @@ import { Box, Card, CardMedia, Paper } from '@mui/material'
 import React from 'react'
 import { Torta } from '../../Torta'
 import { Rez } from '../../Rez'
+import { ItemToString } from '../KosikItems'
 
-export function ItemImage(vlastny, item) {
+type Props = {
+  vlastny: any
+  item: any
+}
+
+export function ItemImage({ vlastny, item }: Props) {
   if (vlastny) {
     const properties = item.properties
-
     return (
       <Card
         sx={{
           p: 2,
-          display: "flex",
-          flexDirection: "row",
+          display: 'flex',
+          flexDirection: 'row',
           gap: 1,
-          width: "100%",
+          width: '100%',
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", width: "50%" }}>
-          <Torta cream={properties.cream} frosting={properties.frosting} />
+        <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
+          {/* <Torta cream={properties.cream} frosting={properties.frosting} /> */}
+          <img
+            style={{ maxHeight: '100%', objectFit: 'contain' }}
+            src={`data:image/jpeg;base64,${localStorage.getItem(
+              ItemToString(properties)
+            )}`}
+          />
         </Box>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "50%",
-            height: "90%",
+            display: 'flex',
+            flexDirection: 'column',
+            width: '50%',
+            height: '90%',
           }}
         >
           <Rez filling={properties.filling} dough={properties.dough} />
@@ -39,17 +50,17 @@ export function ItemImage(vlastny, item) {
     <Card
       sx={{
         p: 2,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        width: "100%",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
       }}
     >
       <CardMedia
         key={item.id}
         component="img"
         image={`/static/images/cakes/${item.id}/0.png`}
-        sx={{ maxWidth: "200px" }}
+        sx={{ maxWidth: '200px' }}
       />
     </Card>
   )
