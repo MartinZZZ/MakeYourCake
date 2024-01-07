@@ -57,7 +57,7 @@ export default function Kosik() {
                 {prazdnyKosikText()}
             </Box>
 
-            <Box style={{backgroundColor: 'lightgoldenrodyellow'}}>
+            <Box>
                 {Object.keys(KosikItems.ItemsZPonuky).map((name) => (
                     <Box display={displayItemBox(false, name)}>
                         {KosikItem(false, KosikItems.ItemsZPonuky[name])}
@@ -78,7 +78,6 @@ export default function Kosik() {
                     minHeight: '10vh',
                     padding: '0 0 100px 0',
                 }}
-                style={{backgroundColor: 'lightgoldenrodyellow'}}
             >
                 {KosikFooter(price)}
             </Box>

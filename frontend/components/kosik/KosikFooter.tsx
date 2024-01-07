@@ -24,14 +24,14 @@ export function KosikFooter(price) {
 
                 <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1}}>
 
-                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/'})}
-                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
-                        <b>Pokračovať v nákupe</b>
+                    <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/'})} 
+                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}> {/*TODO MOZNO ZMENIT*/}
+                        <Typography>Pokračovať v nákupe</Typography> 
                     </Button>
 
                     <Button size='large' variant="outlined" onClick={() => router.push({pathname: '/platba'})}
                             sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
-                        <b>Pokračovať k platbe</b>
+                        <Typography>Pokračovať k platbe</Typography>
                     </Button>
 
                 </Box>
@@ -50,12 +50,12 @@ export function KosikFooter(price) {
                 <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1, backgroundColor: 'lightgoldenrodyellow'}}>
 
                     <Button size='large' variant="outlined" href='/objednat-vlastny-dizajn'
-                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
+                            sx={{backgroundColor: '#FF33A0', outlineColor: 'deeppink', color: 'black'}}>
                         <Typography>Objednať vlastný dizajn</Typography>
                     </Button>
 
                     <Button size='large' variant="outlined" href='/ponuka'
-                            sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
+                            sx={{backgroundColor: '#FF33A0', outlineColor: 'deeppink', color: 'black'}}>
                         <Typography>Objednať z ponuky</Typography>
                     </Button>
                 </Box>

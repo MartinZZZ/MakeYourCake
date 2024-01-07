@@ -9,44 +9,48 @@ export function ItemImage(vlastny, item) {
     const properties = item.properties
 
     return (
-      <Paper
+      <Card
         sx={{
           p: 2,
-          display: 'flex',
-          flexDirection: 'row',
+          display: "flex",
+          flexDirection: "row",
           gap: 1,
-          width: '100%',
+          width: "100%",
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
+        <Box sx={{ display: "flex", flexDirection: "column", width: "50%" }}>
           <Torta cream={properties.cream} frosting={properties.frosting} />
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '50%',
-            height: '90%',
+            display: "flex",
+            flexDirection: "column",
+            width: "50%",
+            height: "90%",
           }}
         >
           <Rez filling={properties.filling} dough={properties.dough} />
         </Box>
-      </Paper>
+      </Card>
     )
   }
 
   return (
-    <Paper sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-      <Box sx={{ width: '50%' }}>
-        <Card sx={{ maxWidth: 500 }}>
-          <CardMedia
-            key={item.id}
-            component="img"
-            height="190"
-            image={`/static/images/cakes/${item.id}/0.png`}
-          />
-        </Card>
-      </Box>
-    </Paper>
+    <Card
+      sx={{
+        p: 2,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        width: "100%",
+      }}
+    >
+      <CardMedia
+        key={item.id}
+        component="img"
+        image={`/static/images/cakes/${item.id}/0.png`}
+        sx={{ maxWidth: "200px" }}
+      />
+    </Card>
   )
 }

@@ -41,7 +41,7 @@ const NavbarItem = ({ tab, label, isCurrentTab }: NavbarItemProps) => {
             },
           }}
       >
-        <Typography>{label}</Typography>
+        <Typography fontSize="1.1rem">{label}</Typography>
       </Box>
   )
 }
