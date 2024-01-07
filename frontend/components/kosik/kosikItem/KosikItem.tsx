@@ -19,7 +19,7 @@ export function KosikItem(vlastny, item) {
       >
         <Grid
           item
-          xs={7}
+          xs={vlastny ? 7 : 4}
           sx={{
             minHeight: '250px',
             maxHeight: '250px',
@@ -29,10 +29,18 @@ export function KosikItem(vlastny, item) {
         >
           <ItemImage vlastny={vlastny} item={item} />
         </Grid>
-        <Grid item xs={2} sx={{ minHeight: '250px', maxHeight: '250px' }}>
+        <Grid
+          item
+          xs={vlastny ? 2 : 4}
+          sx={{ minHeight: '250px', maxHeight: '250px' }}
+        >
           {ItemDetail(vlastny, item)}
         </Grid>
-        <Grid item xs={3} sx={{ minHeight: '250px', maxHeight: '250px' }}>
+        <Grid
+          item
+          xs={vlastny ? 2 : 4}
+          sx={{ minHeight: '250px', maxHeight: '250px' }}
+        >
           {ItemPrice(vlastny, item)}
         </Grid>
       </Grid>

@@ -76,7 +76,7 @@ export const Dragg = () => {
           setSelectedId(null)
         }}
       >
-        Vymazat vybraný doplnok
+        Vymazať vybraný doplnok
       </Button>
     </>
   )
