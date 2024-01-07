@@ -33,9 +33,6 @@ export const Torta = ({id, name, description, price, restrictions}: Props) => {
           variant="contained" 
           endIcon={<ShoppingCartOutlined/>}
           onClick={handleBuyClick}
-          sx={{ backgroundColor: 'deeppink', '&:hover': {
-                backgroundColor: 'deeppink'}
-              }}
         > Kúpiť
         </Button>
       </Link>

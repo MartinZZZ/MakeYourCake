@@ -58,7 +58,7 @@ export default function Platba() {
                 justifyContent: 'center',
             }}
         >
-            <Box sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'lightgoldenrodyellow', marginTop:'15px'}}>
+            <Box sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'lightgoldenrodyellow', padding:'10px', marginBottom:'5px'}}>
                 <Typography variant="h4">
                     Zhrnutie objednávky
                 </Typography>
@@ -74,7 +74,7 @@ export default function Platba() {
             >
                 <Box>
                     <Box>
-                        <Typography variant="h5" sx={{padding: '10px'}}>Osobné údaje</Typography>
+                        <Typography variant="h5" sx={{padding: '10px'}}>Osobné údaje:</Typography>
                     </Box>
 
                     <Box>
@@ -116,7 +116,7 @@ export default function Platba() {
                     </Box>
 
                     <Box>
-                        <Typography variant="h5" sx={{padding: '10px'}}>Adresa</Typography>
+                        <Typography variant="h5" sx={{padding: '10px'}}>Adresa:</Typography>
                     </Box>
 
                     <Box>

@@ -3,19 +3,19 @@ import { useAppSelector } from '../redux/store'
 import { Dough, Filling } from '../types/cake'
 import { cakeSlice, setFilling } from '../redux/features/cake-slice'
 
-const fillingColor: Record<Filling | 'none', string> = {
-  chocolate: '#422503',
-  strawberry: 'red',
-  vanilla: 'yellow',
-  none: '#D9D9D9',
-}
+const fillingColor: Record<Filling | "none", string> = {
+  chocolate: "#9C4E16",
+  strawberry: "#FF4D4D",
+  vanilla: "#fff5bf",
+  none: "#D9D9D9",
+};
 
-const doughColor: Record<Dough | 'none', string> = {
-  chocolate: 'brown',
-  nuts: 'green',
-  vanilla: 'yellow',
-  none: '#C3C3C0',
-}
+const doughColor: Record<Dough | "none", string> = {
+  chocolate: "#703810",
+  nuts: "#b1a567",
+  vanilla: "#f5e9a3",
+  none: "#C3C3C0",
+};
 
 type Props = {
   filling?: Filling

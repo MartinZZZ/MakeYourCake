@@ -20,9 +20,9 @@ export default function NovyDizajn() {
         setValue(parseInt(newValue.toString()))
     }
     return (
-        <Box sx={{ width: '100%', typography: 'body1' }} style={{backgroundColor:'lightgoldenrodyellow'}}>
+        <Box sx={{ width: '100%', typography: 'body1' }}>
             <TabContext value={value.toString()}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor:'lightgoldenrodyellow'}}>
                     <TabList onChange={handleChange} aria-label="tabs" centered>
                         {Object.keys(TABS).map((label, index) => (
                             <Tab key={label} label={label} value={index.toString()} sx={{color: 'black'}}/>
@@ -40,6 +40,8 @@ export default function NovyDizajn() {
                 ))}
             </TabContext>
             <Box
+                px={3}
+                pb={1}
                 sx={{
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -48,20 +50,14 @@ export default function NovyDizajn() {
                 {value === 0 ? (
                     <Box />
                 ) : (
-                    <Button variant="contained" onClick={() => setValue(value - 1)}
-                            sx={{backgroundColor: 'deeppink', '&:hover': {
-                                    backgroundColor: 'deeppink'}
-                            }}>
+                    <Button variant="contained" onClick={() => setValue(value - 1)}>
                         Späť
                     </Button>
                 )}
                 {value === Object.keys(TABS).length - 1 ? (
                     <Box />
                 ) : (
-                    <Button variant="contained" onClick={() => setValue(value + 1)}
-                            sx={{backgroundColor: 'deeppink', '&:hover': {
-                                    backgroundColor: 'deeppink'}
-                            }}>
+                    <Button variant="contained" onClick={() => setValue(value + 1)}>
                         Ďalej
                     </Button>
                 )}

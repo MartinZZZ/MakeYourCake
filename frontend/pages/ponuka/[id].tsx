@@ -110,18 +110,30 @@ const CakeDetail = () => {
     }
   };
 
+  let imageIndexes = []
+  console.log(id)
+  if (id === 0 || id === 1 || id === 4) {
+    imageIndexes = [0, 1]
+  } else if (id === 2 || id === 3) {
+    imageIndexes = [0, 1, 2];
+  } else if (id === 5 || id === 6) {
+    imageIndexes = [0];
+  }
+  console.log(imageIndexes);
 
   return (
-    <Box my={5} sx={{backgroundColor: 'lightgoldenrodyellow', padding: '15px'}}>
+    <Box
+      p={5}
+    >
       <Typography variant="h4">{name}</Typography>
 
       <Box mt={3}>
-        <Grid container spacing={1}>
+        <Grid container spacing={3}>
           <Grid item sm={12} md={6}>
             <Card sx={{ maxWidth: 500 }}>
               <Carousel
                 autoPlay={false}
-                indicators={true}
+                indicators={imageIndexes.length > 1}
                 indicatorContainerProps={{
                   style: {
                     position: "absolute",
@@ -129,7 +141,8 @@ const CakeDetail = () => {
                     textAlign: "center",
                   },
                 }}
-                navButtonsAlwaysVisible={true}
+                navButtonsAlwaysInvisible={imageIndexes.length <= 1}
+                navButtonsAlwaysVisible={imageIndexes.length > 1}
                 navButtonsProps={{
                   style: {
                     backgroundColor: "transparent",
@@ -138,7 +151,7 @@ const CakeDetail = () => {
                   },
                 }}
               >
-                {[0, 1].map((index) => (
+                {imageIndexes.map((index) => (
                   <CardMedia
                     key={index}
                     component="img"
@@ -190,67 +203,73 @@ const CakeDetail = () => {
                 </Typography>
               </FormControl>
             </Box>
-            <Box>
-              <FormControl disabled={id === 1}>
-                <Typography variant="h6" my={1}>
-                  Príchuť
-                </Typography>
-                <RadioGroup
-                  name="controlled-radio-buttons-group"
-                  value={flavour}
-                  onChange={handleFlavourChange}
-                >
-                  <FormControlLabel
-                    value="chocolate"
-                    control={<Radio />}
-                    label="čokoládová"
-                  />
-                  <FormControlLabel
-                    value="vanilla"
-                    control={<Radio />}
-                    label="vanilková"
-                  />
-                  <FormControlLabel
-                    value="strawberry"
-                    control={<Radio />}
-                    label="jahodová"
-                  />
-                  <FormControlLabel
-                    value="coffee"
-                    control={<Radio />}
-                    label="kávová"
-                  />
-                </RadioGroup>
-                {flavourError && (
-                  <Typography variant="body2" color="error">
-                    Vyberte príchuť pred pridaním do košíka.
-                  </Typography>
-                )}
-              </FormControl>
-            </Box>
-            {restrictions.length > 0 && (
-              <Box>
-                <Typography variant="h6" my={1}>
-                  Obmedzenia:
-                  {restrictions.map((restriction) => (
-                    <Box key={restriction} my={1}>
+            <Grid container spacing={15}>
+              <Grid item>
+                <Box>
+                  <FormControl disabled={id === 1}>
+                    <Typography variant="h6" my={1}>
+                      Príchuť
+                    </Typography>
+                    <RadioGroup
+                      name="controlled-radio-buttons-group"
+                      value={flavour}
+                      onChange={handleFlavourChange}
+                    >
                       <FormControlLabel
-                        key={restriction}
-                        control={
-                          <Checkbox
-                            key={restriction}
-                            checked={selectedRestrictions.includes(restriction)}
-                            onChange={handleRestrictionChange}
-                            value={restriction}
-                          />
-                        }
-                        label={limitationTranslations[restriction]}
+                        value="chocolate"
+                        control={<Radio />}
+                        label="čokoládová"
                       />
-                    </Box>
-                  ))}
-                </Typography>
-              </Box>
-            )}
+                      <FormControlLabel
+                        value="vanilla"
+                        control={<Radio />}
+                        label="vanilková"
+                      />
+                      <FormControlLabel
+                        value="strawberry"
+                        control={<Radio />}
+                        label="jahodová"
+                      />
+                      <FormControlLabel
+                        value="coffee"
+                        control={<Radio />}
+                        label="kávová"
+                      />
+                    </RadioGroup>
+                    {flavourError && (
+                      <Typography variant="body2" color="error">
+                        Vyberte príchuť pred pridaním do košíka.
+                      </Typography>
+                    )}
+                  </FormControl>
+                </Box>
+              </Grid>
+              <Grid item>
+                {restrictions.length > 0 && (
+                  <Box>
+                    <Typography variant="h6" my={1}>
+                      Obmedzenia:
+                      {restrictions.map((restriction) => (
+                        <Box key={restriction} my={1}>
+                          <FormControlLabel
+                            key={restriction}
+                            control={
+                              <Checkbox
+                                key={restriction}
+                                checked={selectedRestrictions.includes(restriction)}
+                                onChange={handleRestrictionChange}
+                                value={restriction}
+                              />
+                            }
+                            label={limitationTranslations[restriction]}
+                          />
+                        </Box>
+                      ))}
+                    </Typography>
+                  </Box>
+                )}
+                </Grid>
+            </Grid>
             <Box
               display="flex"
               justifyContent="space-between"
@@ -264,9 +283,6 @@ const CakeDetail = () => {
                 variant="contained"
                 endIcon={<ShoppingCartOutlined />}
                 onClick={handleClickOpen}
-                sx={{ backgroundColor: 'deeppink', '&:hover': {
-                     backgroundColor: 'deeppink'}
-                    }}
               >
                 {" "}
                 Kúpiť

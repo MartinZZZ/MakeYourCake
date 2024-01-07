@@ -125,10 +125,17 @@ export default function Ponuka() {
   }, [selectedCategories, selectedRestrictions]);
 
   return (
-    <Box marginBottom={3} sx={{backgroundColor: 'lightgoldenrodyellow'}}>
-      <Grid container justifyContent="center" borderBottom={1}>
+    <Box marginBottom={3}>
+      <Grid
+        container
+        justifyContent="center"
+        borderBottom={1}
+        sx={{ backgroundColor: "lightgoldenrodyellow" }}
+      >
         <Box mx={1}>
-          <Typography display="inline-block">Kategória: </Typography>
+          <Typography fontSize="1.1rem" display="inline-block">
+            Kategória:{" "}
+          </Typography>
           <Stack
             spacing={3}
             sx={{ width: 380 }}
@@ -147,7 +154,7 @@ export default function Ponuka() {
                 <Typography variant="h4">
                   <TextField
                     {...params}
-                    label="filtuj kategóriu torty"
+                    label="filtruj kategóriu torty"
                     placeholder="kategória torty"
                   />
                 </Typography>
@@ -156,7 +163,9 @@ export default function Ponuka() {
           </Stack>
         </Box>
         <Box mx={1}>
-          <Typography display="inline-block">Obmedzenia: </Typography>
+          <Typography fontSize="1.1rem" display="inline-block">
+            Obmedzenia:{" "}
+          </Typography>
           <Stack
             spacing={3}
             sx={{ width: 380 }}
@@ -175,7 +184,7 @@ export default function Ponuka() {
                 <Typography variant="h4">
                   <TextField
                     {...params}
-                    label="filtuj obmedzenia torty"
+                    label="filtruj obmedzenia torty"
                     placeholder="obmedzenia"
                   />
                 </Typography>
