@@ -5,11 +5,21 @@ import { useAppSelector } from '../../redux/store'
 import { LabelTextPair } from '../LabelTextPair'
 import { Torta } from '../Torta'
 import { Rez } from '../Rez'
+import html2canvas from 'html2canvas'
 import { getTranslation } from '../../helpers/getTranslation'
 import { SubmitButton } from './SubmitButton'
 import { useState } from 'react'
 import { AddToKosik } from '../kosik/UpdateKosik'
 import Draggable from 'react-draggable'
+import { ItemToString } from '../kosik/KosikItems'
+
+const handleSaveImage = async (rest) => {
+  const element = document.getElementById('draggArea')
+  const canvas = await html2canvas(element)
+  const [_, base64Image] = canvas.toDataURL().split(';base64,')
+  const key = ItemToString(rest)
+  localStorage.setItem(key, base64Image)
+}
 
 export const Zhrnutie = () => {
   const { limitations, ...rest } = useAppSelector((state) => state.cakeReducer)
@@ -21,6 +31,7 @@ export const Zhrnutie = () => {
   )
 
   const onSubmit = () => {
+    handleSaveImage(rest)
     setOpen(true)
     AddToKosik(true, rest, limitations)
   }
@@ -43,9 +54,8 @@ export const Zhrnutie = () => {
       sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}
     >
       <Box
+        id="draggArea"
         sx={{
-          // display: 'flex',
-          // flexDirection: 'column',
           position: 'relative',
           height: '100%',
         }}

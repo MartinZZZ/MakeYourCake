@@ -3,7 +3,6 @@ import { useState } from 'react'
 import Emoji from 'react-emojis'
 import Draggable from 'react-draggable'
 import { Torta } from '../Torta'
-import html2canvas from 'html2canvas'
 import { ItemToString } from '../kosik/KosikItems'
 import { CakeType } from '../../redux/features/cake-slice'
 import { AppDispatch, useAppSelector } from '../../redux/store'
@@ -13,15 +12,6 @@ import {
   removeDecoration,
   updateDecorationPosition,
 } from '../../redux/features/decorations-slice'
-import { remove } from 'fs-extra'
-
-const handleDownloadImage = async (item: CakeType) => {
-  const element = document.getElementById('draggArea')
-  const canvas = await html2canvas(element)
-  const [_, base64Image] = canvas.toDataURL().split(';base64,')
-  const key = ItemToString(item)
-  localStorage.setItem(key, base64Image)
-}
 
 export const Dragg = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null)

@@ -12,6 +12,7 @@ const doplnky = [
   'cherries',
   'strawberry',
   'chocolate-bar',
+  'unicorn',
   'keycap-0',
   'keycap-1',
   'keycap-2',
@@ -22,7 +23,6 @@ const doplnky = [
   'keycap-7',
   'keycap-8',
   'keycap-9',
-  'unicorn',
 ]
 
 export const VyberDoplnkov = () => {
