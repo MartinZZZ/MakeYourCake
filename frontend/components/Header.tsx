@@ -1,7 +1,8 @@
-import { Box, Link, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { Navbar } from './Navbar'
 import { usePathname } from 'next/navigation'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Link from "next/link";
 
 const theme = createTheme({
     typography: {
@@ -20,7 +21,7 @@ export const Header = () => {
     return (
         <>
             <Box width="100%" style={{backgroundColor: 'lightpink', paddingTop: '5px'}}>
-                <Link  href={'/'} style={{textDecoration: 'none', color: 'black'}}>
+                <Link  href={'/'} passHref style={{textDecoration: 'none', color: 'black'}}>
                     <ThemeProvider theme={theme}>
                         <Typography align="center" variant="h1">
                             MAKE YOUR CAKE

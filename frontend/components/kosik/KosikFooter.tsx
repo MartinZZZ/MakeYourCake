@@ -42,26 +42,48 @@ export function KosikFooter(price) {
 
     function EmptyKosikFooter() {
         return (
-            <Box sx={{width: '100%', backgroundColor: 'lightgoldenrodyellow'}}>
-                <Box sx={{padding: '20px'}}>
+          <Box sx={{ width: "100%", backgroundColor: "lightgoldenrodyellow" }}>
+            <Box sx={{ padding: "20px" }}></Box>
 
-                </Box>
-
-                <Box sx={{display: 'flex', justifyContent: 'space-evenly', flex: 1, backgroundColor: 'lightgoldenrodyellow'}}>
-
-                    <Button size='large' variant="outlined" href='/objednat-vlastny-dizajn'
-                            sx={{backgroundColor: '#FF33A0', outlineColor: 'deeppink', color: 'black'}}>
-                        <Typography>Objednať vlastný dizajn</Typography>
-                    </Button>
-
-                    <Button size='large' variant="outlined" href='/ponuka'
-                            sx={{backgroundColor: '#FF33A0', outlineColor: 'deeppink', color: 'black'}}>
-                        <Typography>Objednať z ponuky</Typography>
-                    </Button>
-                </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                flex: 1,
+                backgroundColor: "lightgoldenrodyellow",
+              }}
+            >
+              <Button
+                size="large"
+                variant="outlined"
+                onClick={() => {
+                  router.push("/ponuka");
+                }}
+                sx={{
+                  backgroundColor: "lightpink",
+                  outlineColor: "deeppink",
+                  color: "black",
+                }}
+              >
+                <Typography>Objednať z ponuky</Typography>
+              </Button>
+              <Button
+                size="large"
+                variant="outlined"
+                onClick={() => {
+                  router.push("/objednat-vlastny-dizajn");
+                }}
+                sx={{
+                  backgroundColor: "lightpink",
+                  outlineColor: "deeppink",
+                  color: "black",
+                }}
+              >
+                <Typography>Objednať vlastný dizajn</Typography>
+              </Button>
             </Box>
-
-        )
+          </Box>
+        );
     }
 
     return (

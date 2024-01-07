@@ -3,6 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import React from "react";
 import {Favorite} from '@mui/icons-material'
 import styled from 'styled-components';
+import Link from "next/link";
 
 const Container = styled.div`
   display: flex;
@@ -18,10 +19,10 @@ export const App = () => {
             <Container style={{backgroundColor:'lightgoldenrodyellow'}}>
                 <Typography display="block" align='center' maxWidth={'50%'} padding='20px 50px 150px 50px' style={{backgroundColor:'lightgoldenrodyellow', fontSize:'20px'}}>
                     <em style={{fontSize:'20px', color:'black'}}>{<Favorite/>}  Objednajte si svoju vysnívanú tortu online.</em ><br/><br/>
-                    <a href='/objednat-vlastny-dizajn' style={{color:'mediumvioletred'}}>Vyskladajte si vlastnú tortu</a> podľa Vašich predstáv, od príchute a plnky až po sladkú polevu s dekoráciami.
+                    <Link href={`/objednat-vlastny-dizajn`} passHref style={{color: 'mediumvioletred'}}>Vyskladajte si vlastnú tortu</Link> podľa Vašich predstáv, od príchute a plnky až po sladkú polevu s dekoráciami.             
                     Prejdite všetkými krokmi a vytvorte nádhernú tortu na mieru rýchlo a jednoducho!
                     <br/><br/>
-                    <em>Nemáte chuť tvoriť?</em> Žiadny problém, v našej ponuke sú pripravené <a href='/ponuka' style={{color:'mediumvioletred'}}>hotové torty</a> s objednaním na pár klikov.
+                    <em>Nemáte chuť tvoriť?</em> Žiadny problém, v našej ponuke sú pripravené <Link href={`/ponuka`} passHref style={{color: 'mediumvioletred'}}>hotové torty</Link> s objednaním na pár klikov.
                     <br/><br/>
                     Všetky vlastné dizajny tort ponúkame aj <u>bezlepkové, bezlaktózové a vegánske</u>.
                 </Typography>
