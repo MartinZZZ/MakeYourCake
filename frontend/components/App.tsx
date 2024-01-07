@@ -23,7 +23,7 @@ export const App = () => {
                     <br/><br/>
                     <em>Nemáte chuť tvoriť?</em> Žiadny problém, v našej ponuke sú pripravené <a href='/ponuka' style={{color:'mediumvioletred'}}>hotové torty</a> s objednaním na pár klikov.
                     <br/><br/>
-                    Všetky torty ponúkame aj <u>bezlepkové, bezlaktózové a vegánske.</u>
+                    Všetky vlastné dizajny tort ponúkame aj <u>bezlepkové, bezlaktózové a vegánske</u>.
                 </Typography>
 
                 <Box sx={{
@@ -52,7 +52,7 @@ export const App = () => {
                                 },
                             }}
                         >
-                            {[0, 1, 2, 3, 4, 5, 6].map((index) => (
+                            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
                                 <CardMedia
                                     key={index}
                                     component="img"

@@ -49,7 +49,7 @@ const cakes = [
     id: 2,
     name: "Narodeninová torta",
     description:
-      "Minimalistická narodeninová torta pre dvoch s farebnou posýpkou.",
+      "Minimalistická narodeninová torta s farebnou posýpkou.",
     price: 25,
     category: "Narodeninová",
     restriction: ["lactose-free", "vegie"],
@@ -65,28 +65,54 @@ const cakes = [
   },
   {
     id: 4,
-    name: "Dinosaurusová torta",
+    name: "Dinosaurová torta",
     description:
-      "Torta Jednorožec zdobená farebným krémom a dominantným zlatým rohom.",
+      "Torta s jedlými figúrkami dinosaurov, ktorá sa určite zapáči každému (nielen) chlapcovi.",
     price: 55,
-    category: "Iné",
+    category: "Narodeninová",
     restriction: ["lactose-free", "gluten-free", "vegie"],
   },
   {
     id: 5,
+    name: "Lotus torta",
+    description: "Torta s príchuťou Lotus keksíkov.",
+    price: 35,
+    category: "Iné",
+    restriction: [],
+  },
+  {
+    id: 6,
+    name: "Red Velvet torta",
+    description:
+      "Red Velvet torta zdobená jemnými kúskami sušienok, čokolády a jedlého zlata.",
+    price: 40,
+    category: "Iné",
+    restriction: ["vegie", "lactose-free"],
+  },
+  {
+    id: 7,
+    name: "Oreo torta",
+    description: "Torta s príchuťou Oreo keksíkov.",
+    price: 35,
+    category: "Iné",
+    restriction: ["vegie"],
+  },
+  {
+    id: 8,
+    name: "Svadobná",
+    description:
+      "Svadobná torta s jednoduchým dizajnom. Zlatý detail a biele kvety na torte sa budú určite hodiť aj k Vašej svadobnej výzdobe.",
+    price: 90,
+    category: "Svadobná",
+    restriction: ["vegie"],
+  },
+  {
+    id: 9,
     name: "Svadobná",
     description: "Svadobná torta s ružovými kvetmi dozdobená jedlým zlatom.",
     price: 90,
     category: "Svadobná",
     restriction: ["lactose-free"],
-  },
-  {
-    id: 6,
-    name: "Svadobná",
-    description: "Svadobná torta s jednoduchým dizajnom. Zlatý detail a biele kvety na torte sa budú určite hodiť aj k Vašej svadobnej výzdobe.",
-    price: 90,
-    category: "Svadobná",
-    restriction: ["vegie"],
   },
 ];
 
