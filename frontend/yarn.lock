@@ -915,6 +915,11 @@ react-draggable@^4.4.6:
     clsx "^1.1.1"
     prop-types "^15.8.1"
 
+react-emojis@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-emojis/-/react-emojis-1.0.6.tgz#6b47da95f8823368d3865930a97eb060e3f5bb5b"
+  integrity sha512-bNd8uJhSxcRkrVwXOUhVE2UD3FLiX4qB3FkXpyfs5nJPqKojbhUQaHQcJHvN1l93OZNMuYHV9ickIY59uzvzHg==
+
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"

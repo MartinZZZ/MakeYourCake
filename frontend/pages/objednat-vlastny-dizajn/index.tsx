@@ -11,8 +11,8 @@ const TABS = {
   tvar: <Tvar />,
   príchuť: <Prichut />,
   poleva: <Poleva />,
-  zhrnutie: <Zhrnutie />,
   doplnky: <Doplnky />,
+  zhrnutie: <Zhrnutie />,
 }
 
 export default function NovyDizajn() {

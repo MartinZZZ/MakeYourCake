@@ -1,27 +1,44 @@
 import { Box, Button } from '@mui/material'
 import { useState } from 'react'
+import Emoji from 'react-emojis'
 import Draggable from 'react-draggable'
 import { Torta } from '../Torta'
 import html2canvas from 'html2canvas'
+import { ItemToString } from '../kosik/KosikItems'
+import { CakeType } from '../../redux/features/cake-slice'
+import { AppDispatch, useAppSelector } from '../../redux/store'
+import { useDispatch } from 'react-redux'
+import {
+  PositionWithId,
+  removeDecoration,
+  updateDecorationPosition,
+} from '../../redux/features/decorations-slice'
+import { remove } from 'fs-extra'
 
-const handleDownloadImage = async () => {
+const handleDownloadImage = async (item: CakeType) => {
   const element = document.getElementById('draggArea')
   const canvas = await html2canvas(element)
   const [_, base64Image] = canvas.toDataURL().split(';base64,')
-  console.log(base64Image)
-  // let link = document.createElement('a')
-
-  // link.href = base64Image
-  // link.download = 'downloaded-image.jpg'
-
-  // document.body.appendChild(link)
-  // link.click()
-  // document.body.removeChild(link)
+  const key = ItemToString(item)
+  localStorage.setItem(key, base64Image)
 }
 
 export const Dragg = () => {
-  const [position, setPosition] = useState({ x: 100, y: 100 })
-  console.log(position)
+  const [selectedId, setSelectedId] = useState<number | null>(null)
+  const cake = useAppSelector((state) => state.cakeReducer)
+  const decorations = useAppSelector(
+    (state) => state.decorationsReducer.decorations
+  )
+  const dispatch = useDispatch<AppDispatch>()
+
+  const updatePosition = (postionWithId: PositionWithId) => {
+    dispatch(updateDecorationPosition(postionWithId))
+  }
+
+  /**
+   * Image ukladat do localStoragu az pri ulozeni do kosika
+   * V zhrnuti prepouzit tento komponent
+   */
 
   return (
     <>
@@ -31,28 +48,46 @@ export const Dragg = () => {
           width: '100%',
           height: '100%',
           position: 'relative',
+          mb: 4,
         }}
       >
-        <Box sx={{ m: 4 }}>
+        <Box sx={{ m: 2 }}>
           <Torta />
         </Box>
-        <Draggable
-          onStop={(_, data) => setPosition({ x: data.x, y: data.y })}
-          defaultPosition={position}
-          bounds="parent"
-        >
-          <div
-            style={{
-              zIndex: 100,
-              position: 'relative',
-              width: 'fit-content',
-            }}
+        {decorations.map(({ x, y, image, id }) => (
+          <Draggable
+            onMouseDown={() => setSelectedId(id)}
+            onStop={(_, data) => updatePosition({ x: data.x, y: data.y, id })}
+            position={{ x, y }}
+            bounds="parent"
           >
-            XD
-          </div>
-        </Draggable>
+            <div
+              style={{
+                border:
+                  selectedId === id
+                    ? 'solid #b20e66 2px'
+                    : 'solid transparent 2px',
+                cursor: 'move',
+                zIndex: 100,
+                position: 'absolute',
+                width: 'fit-content',
+              }}
+            >
+              <Emoji emoji={image} size={50} />
+            </div>
+          </Draggable>
+        ))}
       </Box>
-      <Button onClick={handleDownloadImage}>Download</Button>
+      <Button
+        variant="contained"
+        disabled={selectedId === null}
+        onClick={() => {
+          dispatch(removeDecoration(selectedId))
+          setSelectedId(null)
+        }}
+      >
+        Vymazat vybraný doplnok
+      </Button>
     </>
   )
 }

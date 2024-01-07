@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Draggable, { DraggableCore } from 'react-draggable'
 import { Section } from '../Section'
 import { Dragg } from './Dragg'
+import { VyberDoplnkov } from './VyberDoplnkov'
 
 export const Doplnky = () => {
   return (
@@ -20,7 +21,7 @@ export const Doplnky = () => {
           <Dragg />
         </Paper>
       }
-      rightSideElement={<></>}
+      rightSideElement={<VyberDoplnkov />}
     />
   )
 }
