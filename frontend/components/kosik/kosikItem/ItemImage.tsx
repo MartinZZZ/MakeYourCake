@@ -13,9 +13,6 @@ type Props = {
 export function ItemImage({ vlastny, item }: Props) {
   if (vlastny) {
     const properties = item.properties
-
-    console.log('PROPS', properties, ItemToString(properties))
-
     return (
       <Card
         sx={{
@@ -29,6 +26,7 @@ export function ItemImage({ vlastny, item }: Props) {
         <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
           {/* <Torta cream={properties.cream} frosting={properties.frosting} /> */}
           <img
+            style={{ maxHeight: '100%', objectFit: 'contain' }}
             src={`data:image/jpeg;base64,${localStorage.getItem(
               ItemToString(properties)
             )}`}
