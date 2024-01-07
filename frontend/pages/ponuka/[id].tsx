@@ -112,12 +112,14 @@ const CakeDetail = () => {
 
   let imageIndexes = []
   console.log(id)
-  if (id === 0 || id === 1 || id === 4) {
+  if (id === 0 || id === 1 || id === 4 || id === 5 || id === 6) {
     imageIndexes = [0, 1]
   } else if (id === 2 || id === 3) {
-    imageIndexes = [0, 1, 2];
-  } else if (id === 5 || id === 6) {
-    imageIndexes = [0];
+    imageIndexes = [0, 1, 2]
+  } else if (id === 7) {
+    imageIndexes = [0, 1, 2, 3]
+  } else if (id === 8 || id === 9) {
+    imageIndexes = [0]
   }
   console.log(imageIndexes);
 
