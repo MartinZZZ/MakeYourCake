@@ -6,9 +6,9 @@ export type Filling = 'chocolate' | 'vanilla' | 'strawberry'
 
 export type Dough = 'chocolate' | 'vanilla' | 'nuts'
 
-export type Frosting = 'chocolate' | 'vanilla'
+export type Frosting = 'chocolate' | 'vanilla' | 'strawberry' | 'blueberry'
 
-export type Cream = 'white' | 'yellow' | 'brown' | 'red'
+export type Cream = 'white' | 'yellow' | 'brown' | 'red' | 'pink' | 'blue' 
 
 export type Option = {
   value: string

@@ -4,7 +4,7 @@ import { AppDispatch, useAppSelector } from '../../redux/store'
 import { CakeShape } from '../../types/cake'
 import { setPortions, setShape } from '../../redux/features/cake-slice'
 
-const HIGHLIGHT_COLOR = 'green'
+const HIGHLIGHT_COLOR = 'deeppink'
 const BORDER_THICKNESS = 10
 
 const ROUND_SIZES = [
@@ -24,14 +24,14 @@ const HIGLIGHTED_STYLES = {
 }
 
 const STYLES = {
-  width: '30%',
-  paddingTop: '30%',
-  backgroundColor: 'secondary.main',
+  width: "30%",
+  paddingTop: "30%",
+  backgroundColor: "lightpink",
   border: `solid ${BORDER_THICKNESS}px white`,
-  '&:hover': {
-    cursor: 'pointer',
+  "&:hover": {
+    cursor: "pointer",
   },
-}
+};
 
 type PortionButtonProps = {
   size: number
@@ -89,6 +89,7 @@ export const Tvar = () => {
             borderRadius: '50%',
             ...STYLES,
             ...(selectedShape === 'round' ? HIGLIGHTED_STYLES : {}),
+
           }}
         />
         <Box

@@ -2,19 +2,23 @@ import { Box } from '@mui/material'
 import { Cream, Frosting } from '../types/cake'
 import { useAppSelector } from '../redux/store'
 
-const creamColor: Record<Cream | 'none', string> = {
-  white: 'white',
-  yellow: 'yellow',
-  brown: '#422503',
-  red: 'red',
-  none: '#D9D9D9',
-}
+const creamColor: Record<Cream | "none", string> = {
+  white: "#F2F2F2",
+  yellow: "#ffff99",
+  brown: "#9C4E16",
+  red: "#FF3333",
+  pink: "#FF99AA",
+  blue: "#aed8ff",
+  none: "#D9D9D9",
+};
 
-const frostingColor: Record<Frosting | 'none', string> = {
-  chocolate: 'brown',
-  vanilla: 'yellow',
-  none: '#C3C3C0',
-}
+const frostingColor: Record<Frosting | "none", string> = {
+  chocolate: "#6d3d0f",
+  vanilla: "#FFFF80",
+  strawberry: "#FF6680",
+  blueberry: "#6666FF",
+  none: "#C3C3C0",
+};
 
 type Props = {
   cream?: Cream

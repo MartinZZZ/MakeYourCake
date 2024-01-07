@@ -19,7 +19,7 @@ export const AddToKosik = (vlastny: boolean, rest, limitations = null, id = null
         let name = ItemToString(newItem)
 
         if (!KosikItems.ItemsZPonuky[name]) {
-            KosikItems.ItemsZPonuky[name] = {'amount': 0, 'properties': newItem, 'price': price, 'id': id}
+            KosikItems.ItemsZPonuky[name] = {'amount': 0, 'properties': newItem, 'price': price, 'id': id, 'restrictions': limitations}
         }
 
         KosikItems.ItemsZPonuky[name].amount++

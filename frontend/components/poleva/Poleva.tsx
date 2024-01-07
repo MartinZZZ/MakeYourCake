@@ -12,12 +12,17 @@ const creamOptions: Option[] = [
   { value: 'yellow', label: 'Žltý' },
   { value: 'brown', label: 'Hnedý' },
   { value: 'red', label: 'Červený' },
+  { value: 'pink', label: 'Ružový' },
+  { value: 'blue', label: 'Modrý' },
 ]
 
 const frostingOptions: Option[] = [
-  { value: 'chocolate', label: 'Čokoládová' },
-  { value: 'vanilla', label: 'Vanilková' },
-]
+  { value: "chocolate", label: "Čokoládová" },
+  { value: "vanilla", label: "Vanilková" },
+  { value: "strawberry", label: "Jahodová" },
+  { value: "blueberry", label: "Čučoriedková" },
+];
+
 
 export const Poleva = () => {
   const selectedCream = useAppSelector((state) => state.cakeReducer.cream)

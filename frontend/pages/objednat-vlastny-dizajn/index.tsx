@@ -24,10 +24,21 @@ export default function NovyDizajn() {
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value.toString()}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: 'divider',
+            backgroundColor: 'lightgoldenrodyellow',
+          }}
+        >
           <TabList onChange={handleChange} aria-label="tabs" centered>
             {Object.keys(TABS).map((label, index) => (
-              <Tab key={label} label={label} value={index.toString()} />
+              <Tab
+                key={label}
+                label={label}
+                value={index.toString()}
+                sx={{ color: 'black' }}
+              />
             ))}
           </TabList>
         </Box>
@@ -42,6 +53,8 @@ export default function NovyDizajn() {
         ))}
       </TabContext>
       <Box
+        px={3}
+        pb={1}
         sx={{
           display: 'flex',
           justifyContent: 'space-between',

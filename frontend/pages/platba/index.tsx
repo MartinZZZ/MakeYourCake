@@ -58,7 +58,7 @@ export default function Platba() {
                 justifyContent: 'center',
             }}
         >
-            <Box sx={{display: 'flex', justifyContent: 'center'}}>
+            <Box sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'lightgoldenrodyellow', padding:'10px', marginBottom:'5px'}}>
                 <Typography variant="h4">
                     Zhrnutie objednávky
                 </Typography>
@@ -74,7 +74,7 @@ export default function Platba() {
             >
                 <Box>
                     <Box>
-                        <Typography variant="h5" sx={{padding: '10px'}}>Osobné údaje</Typography>
+                        <Typography variant="h5" sx={{padding: '10px'}}>Osobné údaje:</Typography>
                     </Box>
 
                     <Box>
@@ -116,7 +116,7 @@ export default function Platba() {
                     </Box>
 
                     <Box>
-                        <Typography variant="h5" sx={{padding: '10px'}}>Adresa</Typography>
+                        <Typography variant="h5" sx={{padding: '10px'}}>Adresa:</Typography>
                     </Box>
 
                     <Box>
@@ -206,8 +206,9 @@ export default function Platba() {
             </Grid>
 
             <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                <Button size="large" variant="outlined" onClick={() => setOpen(true)}>
-                    ODOSLAŤ FORMULÁR
+                <Button size="large" variant="outlined" onClick={() => setOpen(true)}
+                        sx={{backgroundColor: 'lightpink', outlineColor: 'deeppink', color: 'black'}}>
+                    <b>ODOSLAŤ FORMULÁR</b>
                 </Button>
             </Box>
 
@@ -216,7 +217,7 @@ export default function Platba() {
                     <Typography sx={{p: 3, display: 'flex', justifyContent: 'center'}} variant="h5">Ďakujeme za objednávku!</Typography>
                     <Typography sx={{p: 2}} >O stave objednávky Vás budeme informovať emailom.</Typography>
                 </Box>
-                <Button href={'/'}>Zavrieť</Button>
+                <Button href={'/kosik'}>Zavrieť</Button>
             </Dialog>
         </Box>
     )
